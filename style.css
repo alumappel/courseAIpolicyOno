@@ -4,12 +4,12 @@
 
 :root {
   --color-bg-light: #f2f2f3;
-  --color-bg-alt: #b9c9cc;
-  --color-primary-dark: #005157;
-  --color-primary: #008c95;
-  --color-accent: #ffc82d;
-  --color-accent-light: #e6f4f4;
-  --color-neutral-1: #97babc;
+  --color-bg-alt: #d3e6c2;
+  --color-primary-dark: #565255;
+  --color-primary: #716c70;
+  --color-accent: #afd602;
+  --color-accent-light: #eaf4e6;
+  --color-neutral-1: #aed5aa;
   --color-neutral-2: #e1e9ea;
   --color-neutral-3: #c1d3d5;
   --color-text: #000000;
@@ -18,7 +18,7 @@
   --color-success: #1d6f42;
   --color-danger: #8a1f2d;
   --color-danger-soft: #fce9ec;
-  --color-warning-soft: #fff4cf;
+  --color-warning-soft: #f3ffb5;
   --font-heading: "Assistant", Arial, sans-serif;
   --font-body: "Assistant", Arial, sans-serif;
   --space-2: 0.5rem;
@@ -691,8 +691,8 @@ main>section:not(#builder) {
   background:
     linear-gradient(90deg, rgba(0, 81, 87, 0.025) 1px, transparent 1px) 0 0 / 2cqw 2cqw,
     linear-gradient(rgba(0, 81, 87, 0.025) 1px, transparent 1px) 0 0 / 2cqw 2cqw,
-    linear-gradient(135deg, #f0f8f8 0%, #a4cbce 100%);
-  color: #1e293b;
+    linear-gradient(135deg, #f0f8f8 0%, #bcd883 100%);
+  color: var(--color-primary-dark);
   border-radius: var(--radius-lg);
   aspect-ratio: 16 / 9;
   width: 100%;
@@ -708,7 +708,7 @@ main>section:not(#builder) {
 
 .slide-preview h3 {
   font-size: 2.6cqw !important;
-  color: #005157 !important;
+  color: var(--color-primary-dark) !important;
   margin-top: 0 !important;
   margin-bottom: 0.3cqw !important;
   font-weight: 800 !important;
@@ -782,7 +782,7 @@ main>section:not(#builder) {
 }
 
 .slide-card h4 {
-  color: #005157 !important;
+  color: var(--color-primary-dark) !important;
   font-size: 1.6cqw !important;
   font-weight: 700 !important;
   margin-bottom: 0.3cqw !important;
@@ -800,14 +800,14 @@ main>section:not(#builder) {
   font-size: 1.3cqw !important;
   line-height: 1.5;
   margin-block-end: 0.2cqw;
-  color: #334155 !important;
+  color: var(--color-primary-dark) !important;
   position: relative;
   padding-inline-start: 0.8cqw;
 }
 
 .slide-card li::before {
   content: "•";
-  color: #008c95;
+  color: var(--color-accent) !important;
   font-weight: bold;
   display: inline-block;
   width: 0.8cqw;
@@ -819,7 +819,7 @@ main>section:not(#builder) {
 }
 
 .slide-card a {
-  color: #005157 !important;
+  color: #217201 !important;
   text-decoration: underline !important;
 }
 
@@ -1291,7 +1291,7 @@ footer a:hover {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background-color: #002d30;
+  background-color: #627703;
   overflow: hidden;
   perspective: 1000px;
   -webkit-perspective: 1000px;
