@@ -2382,6 +2382,24 @@ function init() {
       } catch (e) {}
     });
   }
+
+  // Mouse-following Glow in Hero Section
+  const heroSection = document.getElementById("top");
+  if (heroSection) {
+    let glowEl = heroSection.querySelector(".hero-mouse-glow");
+    if (!glowEl) {
+      glowEl = document.createElement("div");
+      glowEl.className = "hero-mouse-glow";
+      heroSection.appendChild(glowEl);
+    }
+    heroSection.addEventListener("mousemove", (e) => {
+      const rect = heroSection.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      glowEl.style.setProperty("--x", `${x}px`);
+      glowEl.style.setProperty("--y", `${y}px`);
+    }, { passive: true });
+  }
 }
 
 function downloadSlideAsImage() {
