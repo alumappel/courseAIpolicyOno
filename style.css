@@ -216,6 +216,38 @@ body :where(header, main > section:not(#builder), footer, .modal) .btn {
   color: #121212 !important;
 }
 
+#results-reset-btn:hover,
+#results-reset-btn:focus-visible {
+  background-color: var(--color-accent) !important;
+  color: #121212 !important;
+}
+
+/* Modal Button overrides for resetConfirmModal */
+.modal .btn-primary {
+  background-color: var(--color-accent) !important;
+  border-color: var(--border-color) !important;
+  color: #121212 !important;
+}
+
+.modal .btn-primary:hover,
+.modal .btn-primary:focus-visible {
+  background-color: var(--color-accent) !important;
+  color: #121212 !important;
+}
+
+.modal .btn-outline-danger {
+  color: #991b1b !important;
+  border-color: #121212 !important; /* Black border by default */
+  background-color: transparent !important;
+}
+
+.modal .btn-outline-danger:hover,
+.modal .btn-outline-danger:focus-visible {
+  background-color: #fee2e2 !important; /* Soft light red background */
+  color: #121212 !important; /* Black text on hover */
+  border-color: #991b1b !important; /* Red border on hover */
+}
+
 .btn-light {
   background-color: #ffffff !important;
   border-color: var(--border-color) !important;
@@ -658,7 +690,46 @@ main>section:not(#builder) {
   /* No shadow */
 }
 
+#builder,
+#results {
+  position: relative;
+  isolation: isolate;
+  background-color: #ffffff;
+  overflow: hidden; /* Clips mouse glow inside section boundaries */
+}
+
+#builder::before,
+#results::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(rgba(18, 18, 18, 0.08) 1.5px, transparent 1.5px),
+    radial-gradient(rgba(18, 18, 18, 0.04) 1px, transparent 1px);
+  background-size: 20px 20px, 40px 40px;
+  background-position: 0 0, 10px 10px;
+  pointer-events: none;
+  z-index: -2; /* Placed behind the glow layer */
+}
+
+/* Workspace mouse-following glow (behind cards, in front of dots) */
+.workspace-mouse-glow {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(175, 214, 2, 0.22) 0%, transparent 70%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  left: var(--x, -1000px);
+  top: var(--y, -1000px);
+  z-index: -1;
+  will-change: left, top;
+}
+
 .form-section {
+  position: relative;
+  z-index: 1; /* Renders above glow layer to mask it */
   padding: 1.5rem;
   background: #fff;
   border: var(--border-width) solid var(--border-color);

@@ -2400,6 +2400,26 @@ function init() {
       glowEl.style.setProperty("--y", `${y}px`);
     }, { passive: true });
   }
+
+  // Mouse-following Glow in Workspace Sections (Builder & Results)
+  const workspaceSections = [document.getElementById("builder"), document.getElementById("results")];
+  workspaceSections.forEach(section => {
+    if (section) {
+      let glowEl = section.querySelector(".workspace-mouse-glow");
+      if (!glowEl) {
+        glowEl = document.createElement("div");
+        glowEl.className = "workspace-mouse-glow";
+        section.appendChild(glowEl);
+      }
+      section.addEventListener("mousemove", (e) => {
+        const rect = section.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        glowEl.style.setProperty("--x", `${x}px`);
+        glowEl.style.setProperty("--y", `${y}px`);
+      }, { passive: true });
+    }
+  });
 }
 
 function downloadSlideAsImage() {
