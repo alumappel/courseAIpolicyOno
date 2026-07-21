@@ -524,75 +524,138 @@ main>section:not(#builder) {
   box-shadow: var(--shadow-flat-hover);
 }
 
-.guideline-card {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.2s ease;
-  box-shadow: var(--shadow-flat);
-  border: var(--border-width) solid var(--border-color);
-  border-radius: var(--radius-lg);
+.guideline-row-card {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.85);
+  /* Semi-transparent light backing for separation */
+  padding: 0;
+  /* Remove internal padding to align number badge flush */
+  border: none;
+  box-shadow: none;
+  overflow: hidden;
+  /* Clips number badge corners to match card radius */
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.guideline-card:hover {
-  transform: translate(-4px, -4px);
-  box-shadow: var(--shadow-flat-hover);
-}
-
-.guideline-card.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.guideline-summary {
-  background-color: var(--color-warning-soft);
-  border-inline-start: 1px solid rgba(255, 200, 45, 0.55);
-}
-
-.guideline-media-col {
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.guideline-questions {
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  border-inline-start: 3px solid var(--color-accent);
-}
-
-.guideline-card--questions-band .guideline-summary {
-  background-color: #fff;
-  border-inline-start: 0;
-}
-
-.guideline-card--questions-band .guideline-questions {
-  background-color: #f1f5f9;
-  border-inline-start: 3px solid var(--border-color);
-}
-
-.guideline-card .guideline-index {
+.guideline-number-square {
   display: inline-flex;
-  justify-content: center;
   align-items: center;
-  inline-size: 3.25rem;
-  block-size: 3.25rem;
-  border-radius: 50%;
+  justify-content: center;
+  width: 4rem;
+  /* Bold vertical sidebar tab */
+  min-width: 4rem;
   background-color: var(--color-accent);
-  color: #222;
-  font-weight: 800;
-  font-size: 1.4rem;
+  color: #121212;
+  border: var(--border-width) solid var(--border-color);
+  /* Border on all sides */
+  font-weight: 900;
+  font-size: 1.75rem;
+  flex-shrink: 0;
 }
 
-.guideline-card ul {
-  padding-inline-start: 1.15rem;
+.guideline-title {
+  font-weight: 900 !important;
+  color: #121212;
+}
+
+.guideline-desc {
+  color: #353234;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.guideline-memo-col {
+  perspective: 1000px;
+  /* 3D depth perspective for children */
+}
+
+.guideline-memo-note {
+  position: relative;
+  background-color: #f1f5f9;
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.75rem 1.25rem 1.5rem;
+
+  /* 1. Technical Setup & Physics */
+  transform-origin: top center;
+  /* Attached at the top */
+
+  /* 4. Transition (Tactile and responsive) */
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* 2. Default State (Resting) - Bottom lifted, solid flat offset Neobrutalist shadow */
+.memo-tilt-left {
+  transform: rotateX(-5deg) rotate(-0.7deg);
+  box-shadow: 10px 12px 0px #121212;
+}
+
+.memo-tilt-right {
+  transform: rotateX(-5deg) rotate(0.7deg);
+  box-shadow: 10px 12px 0px #121212;
+}
+
+/* 3. Hover State (Pressed flat against the board) - Closer solid shadow */
+.guideline-row-card:hover .guideline-memo-note.memo-tilt-left {
+  transform: rotateX(0deg) rotate(-0.7deg);
+  box-shadow: 3px 3px 0px #121212;
+}
+
+.guideline-row-card:hover .guideline-memo-note.memo-tilt-right {
+  transform: rotateX(0deg) rotate(0.7deg);
+  box-shadow: 3px 3px 0px #121212;
+}
+
+/* Washi Tape / Clip Sticker Detail centered at top of Memo Note */
+.memo-tape {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  /* Centered header clip */
+  width: 50px;
+  height: 16px;
+  background-color: var(--color-accent);
+  border: 2px solid var(--border-color);
+  border-radius: 2px;
+  box-shadow: 1px 1px 0px #121212;
+}
+
+.memo-questions-list {
+  padding-inline-start: 1rem;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+.memo-questions-list li {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #121212;
+  position: relative;
+  padding-inline-start: 1.25rem;
+  margin-block-end: 0.6rem;
+  font-weight: 600;
+}
+
+.memo-questions-list li:last-child {
   margin-block-end: 0;
-  inline-size: 100%;
 }
 
-.guideline-card li+li {
-  margin-block-start: 0.5rem;
+/* Modest flat black round bullet dot */
+.memo-questions-list li::before {
+  content: "•";
+  color: #121212 !important;
+  /* Flat black bullet */
+  font-weight: 900;
+  font-size: 1.3rem;
+  display: inline-block;
+  width: 1rem;
+  margin-inline-start: -1.25rem;
+  position: absolute;
+  right: 0;
+  top: -2px;
+  text-shadow: none;
+  /* No shadow */
 }
 
 .form-section {
