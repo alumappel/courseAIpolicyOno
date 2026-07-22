@@ -959,7 +959,7 @@ main>section:not(#builder) {
 .dual-select-grid .mini-panel {
   border-radius: var(--radius-md);
   border: var(--border-width) solid var(--border-color);
-  background: #fff;
+  background: #f3f4f6;
   padding: 1.25rem;
   box-shadow: 3px 3px 0px #121212;
 }
@@ -1032,6 +1032,7 @@ main>section:not(#builder) {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-flat);
   padding: 1.5rem;
+  overflow: hidden;
 }
 
 .wizard-topbar {
@@ -1039,8 +1040,10 @@ main>section:not(#builder) {
   grid-template-columns: 1fr auto;
   gap: 1rem;
   align-items: center;
-  padding-block-end: 1rem;
-  border-block-end: var(--border-width) solid var(--border-color);
+  margin: -1.5rem -1.5rem 1.25rem -1.5rem;
+  padding: 1.25rem 1.5rem;
+  background-color: #f3f4f6;
+  border-block-end: none;
 }
 
 .wizard-step-label {
@@ -1063,7 +1066,7 @@ main>section:not(#builder) {
 
 .wizard-progress {
   block-size: 1rem;
-  margin-block: 1rem 1.5rem;
+  margin-block: 0 1.5rem;
   background-color: #ffffff;
   border: var(--border-width) solid var(--border-color);
   border-radius: 999px;
@@ -1086,7 +1089,7 @@ main>section:not(#builder) {
   justify-content: space-between;
   gap: 1rem;
   padding-block-start: 1.25rem;
-  border-block-start: var(--border-width) solid var(--border-color);
+  border-block-start: none;
 }
 
 .wizard-actions-group {
