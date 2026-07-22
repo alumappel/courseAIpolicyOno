@@ -690,16 +690,16 @@ main>section:not(#builder) {
   /* No shadow */
 }
 
-#builder,
-#results {
+.workspace-container {
   position: relative;
   isolation: isolate;
   background-color: #ffffff;
-  overflow: hidden; /* Clips mouse glow inside section boundaries */
+  overflow: hidden; /* Clips mouse glow inside workspace boundaries */
+  border-top: var(--border-width) solid var(--border-color);
+  border-bottom: var(--border-width) solid var(--border-color);
 }
 
-#builder::before,
-#results::before {
+.workspace-container::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -710,6 +710,13 @@ main>section:not(#builder) {
   background-position: 0 0, 10px 10px;
   pointer-events: none;
   z-index: -2; /* Placed behind the glow layer */
+}
+
+#builder,
+#results {
+  position: relative;
+  background-color: transparent;
+  overflow: visible;
 }
 
 /* Workspace mouse-following glow (behind cards, in front of dots) */

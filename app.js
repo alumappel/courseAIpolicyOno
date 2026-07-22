@@ -2426,25 +2426,23 @@ function init() {
     }, { passive: true });
   }
 
-  // Mouse-following Glow in Workspace Sections (Builder & Results)
-  const workspaceSections = [document.getElementById("builder"), document.getElementById("results")];
-  workspaceSections.forEach(section => {
-    if (section) {
-      let glowEl = section.querySelector(".workspace-mouse-glow");
-      if (!glowEl) {
-        glowEl = document.createElement("div");
-        glowEl.className = "workspace-mouse-glow";
-        section.appendChild(glowEl);
-      }
-      section.addEventListener("mousemove", (e) => {
-        const rect = section.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        glowEl.style.setProperty("--x", `${x}px`);
-        glowEl.style.setProperty("--y", `${y}px`);
-      }, { passive: true });
+  // Mouse-following Glow in Workspace Container (Builder & Results)
+  const workspaceContainer = document.getElementById("workspace-container");
+  if (workspaceContainer) {
+    let glowEl = workspaceContainer.querySelector(".workspace-mouse-glow");
+    if (!glowEl) {
+      glowEl = document.createElement("div");
+      glowEl.className = "workspace-mouse-glow";
+      workspaceContainer.appendChild(glowEl);
     }
-  });
+    workspaceContainer.addEventListener("mousemove", (e) => {
+      const rect = workspaceContainer.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      glowEl.style.setProperty("--x", `${x}px`);
+      glowEl.style.setProperty("--y", `${y}px`);
+    }, { passive: true });
+  }
 
   // Handle results accordion collapse button text & state updates
   ["collapse-editor", "collapse-slide"].forEach((id) => {
