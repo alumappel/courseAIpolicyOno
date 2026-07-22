@@ -737,6 +737,45 @@ main>section:not(#builder) {
   box-shadow: var(--shadow-flat);
 }
 
+/* Results Accordion Cards */
+.accordion-results-card {
+  position: relative;
+  z-index: 1;
+  background-color: #ffffff;
+  border: var(--border-width) solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-flat);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.accordion-title-wrapper {
+  cursor: pointer;
+  user-select: none;
+}
+
+.accordion-title-wrapper:hover .h4 {
+  color: #000000;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+.toggle-chevron {
+  transition: transform 0.25s ease-in-out;
+}
+
+.accordion-title-wrapper[aria-expanded="true"] .toggle-chevron,
+.accordion-toggle-btn[aria-expanded="true"] .toggle-chevron {
+  transform: rotate(180deg);
+}
+
+.accordion-toggle-btn:hover,
+.accordion-toggle-btn:focus-visible {
+  background-color: var(--color-accent) !important;
+  color: #121212 !important;
+}
+
+
+
 .form-section+.form-section {
   margin-block-start: 1.5rem;
 }

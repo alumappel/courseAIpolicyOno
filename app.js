@@ -1537,6 +1537,31 @@ function getPolicyHtml() {
 
 function scrollToResults() {
   resultsSection.hidden = false;
+
+  // Collapse both results sections by default after generation
+  ["collapse-editor", "collapse-slide"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      if (window.bootstrap?.Collapse) {
+        const bsCollapse = window.bootstrap.Collapse.getInstance(el);
+        if (bsCollapse) {
+          bsCollapse.hide();
+        } else {
+          el.classList.remove("show");
+        }
+      } else {
+        el.classList.remove("show");
+      }
+    }
+    const triggers = document.querySelectorAll(`[data-bs-target="#${id}"]`);
+    triggers.forEach(trig => trig.setAttribute("aria-expanded", "false"));
+    const btn = document.querySelector(`button[data-bs-target="#${id}"]`);
+    if (btn) {
+      const textSpan = btn.querySelector(".accordion-btn-text");
+      if (textSpan) textSpan.textContent = "הצג";
+    }
+  });
+
   resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
@@ -2420,9 +2445,45 @@ function init() {
       }, { passive: true });
     }
   });
+
+  // Handle results accordion collapse button text & state updates
+  ["collapse-editor", "collapse-slide"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    el.addEventListener("show.bs.collapse", () => {
+      const triggers = document.querySelectorAll(`[data-bs-target="#${id}"]`);
+      triggers.forEach(trig => trig.setAttribute("aria-expanded", "true"));
+      const btn = document.querySelector(`button[data-bs-target="#${id}"]`);
+      if (btn) {
+        const textSpan = btn.querySelector(".accordion-btn-text");
+        if (textSpan) textSpan.textContent = "הסתר";
+      }
+    });
+
+    el.addEventListener("hide.bs.collapse", () => {
+      const triggers = document.querySelectorAll(`[data-bs-target="#${id}"]`);
+      triggers.forEach(trig => trig.setAttribute("aria-expanded", "false"));
+      const btn = document.querySelector(`button[data-bs-target="#${id}"]`);
+      if (btn) {
+        const textSpan = btn.querySelector(".accordion-btn-text");
+        if (textSpan) textSpan.textContent = "הצג";
+      }
+    });
+  });
 }
 
 function downloadSlideAsImage() {
+  const slideCollapseEl = document.getElementById("collapse-slide");
+  if (slideCollapseEl && !slideCollapseEl.classList.contains("show")) {
+    if (window.bootstrap?.Collapse) {
+      const bsCollapse = window.bootstrap.Collapse.getOrCreateInstance(slideCollapseEl);
+      bsCollapse.show();
+    } else {
+      slideCollapseEl.classList.add("show");
+    }
+  }
+
   const slideEl = document.getElementById("student-slide");
   if (!slideEl || !window.html2canvas) {
     return;
