@@ -237,15 +237,19 @@ body :where(header, main > section:not(#builder), footer, .modal) .btn {
 
 .modal .btn-outline-danger {
   color: #991b1b !important;
-  border-color: #121212 !important; /* Black border by default */
+  border-color: #121212 !important;
+  /* Black border by default */
   background-color: transparent !important;
 }
 
 .modal .btn-outline-danger:hover,
 .modal .btn-outline-danger:focus-visible {
-  background-color: #fee2e2 !important; /* Soft light red background */
-  color: #121212 !important; /* Black text on hover */
-  border-color: #991b1b !important; /* Red border on hover */
+  background-color: #fee2e2 !important;
+  /* Soft light red background */
+  color: #121212 !important;
+  /* Black text on hover */
+  border-color: #991b1b !important;
+  /* Red border on hover */
 }
 
 .btn-light {
@@ -694,7 +698,8 @@ main>section:not(#builder) {
   position: relative;
   isolation: isolate;
   background-color: #ffffff;
-  overflow: hidden; /* Clips mouse glow inside workspace boundaries */
+  overflow: hidden;
+  /* Clips mouse glow inside workspace boundaries */
   border-top: var(--border-width) solid var(--border-color);
   border-bottom: var(--border-width) solid var(--border-color);
 }
@@ -709,7 +714,8 @@ main>section:not(#builder) {
   background-size: 20px 20px, 40px 40px;
   background-position: 0 0, 10px 10px;
   pointer-events: none;
-  z-index: -2; /* Placed behind the glow layer */
+  z-index: -2;
+  /* Placed behind the glow layer */
 }
 
 #builder,
@@ -736,7 +742,8 @@ main>section:not(#builder) {
 
 .form-section {
   position: relative;
-  z-index: 1; /* Renders above glow layer to mask it */
+  z-index: 1;
+  /* Renders above glow layer to mask it */
   padding: 1.5rem;
   background: #fff;
   border: var(--border-width) solid var(--border-color);
@@ -1203,9 +1210,7 @@ main>section:not(#builder) {
 }
 
 .slide-preview {
-  background:
-    radial-gradient(#121212 1.5px, transparent 1.5px) 0 0 / 2.5cqw 2.5cqw,
-    #ffffff;
+  background: linear-gradient(135deg, #f7fce6 0%, #e7f698 50%, #e2e8f5 100%);
   color: #121212;
   border-radius: 0;
   aspect-ratio: 16 / 9;
@@ -1240,10 +1245,52 @@ main>section:not(#builder) {
   margin: 0;
 }
 
+.slide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1cqw;
+  width: 100%;
+  margin-bottom: 0.2cqw;
+}
+
+.slide-header-text {
+  flex-grow: 1;
+}
+
+.slide-logo-placeholder {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2cqw;
+  width: 5.8cqw;
+  height: 5.8cqw;
+  aspect-ratio: 1 / 1;
+  border: 1.5px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.4cqw;
+  background: rgba(255, 255, 255, 0.85);
+  color: #353234;
+  font-size: 0.8cqw;
+  font-weight: 800;
+  text-align: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 2px 2px 0px #121212;
+  user-select: none;
+}
+
+.slide-logo-placeholder svg {
+  width: 1.8cqw;
+  height: 1.8cqw;
+  flex-shrink: 0;
+}
+
 .slide-preview .slide-footer {
   margin-block-start: auto;
   padding-block-start: 0.8cqw;
-  border-block-start: var(--border-width) solid var(--border-color);
+  border-block-start: none;
   font-size: 0.85cqw;
   background: transparent;
 }
@@ -1253,6 +1300,7 @@ main>section:not(#builder) {
   margin-bottom: 0 !important;
   font-size: 0.85cqw !important;
   font-weight: 800 !important;
+  font-family: var(--font-body), 'Assistant', sans-serif !important;
 }
 
 /* Slide Card Grid Layout with centered partial rows */
@@ -1294,6 +1342,15 @@ main>section:not(#builder) {
 .slide-card:hover {
   transform: translate(-2px, -2px);
   box-shadow: 5px 5px 0px #121212 !important;
+}
+
+.slide-preview .slide-card {
+  transition: none !important;
+}
+
+.slide-preview .slide-card:hover {
+  transform: none !important;
+  box-shadow: 3px 3px 0px #121212 !important;
 }
 
 .slide-card h4 {
@@ -1556,9 +1613,7 @@ footer a:hover {
     max-height: 100vh !important;
     padding: 2.2cqw 2.5cqw !important;
     box-sizing: border-box !important;
-    background:
-      radial-gradient(#121212 1.5px, transparent 1.5px) 0 0 / 2.5cqw 2.5cqw,
-      #ffffff !important;
+    background: linear-gradient(135deg, #f7fce6 0%, #e7f698 50%, #e2e8f5 100%) !important;
     color: #121212 !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
@@ -1572,7 +1627,7 @@ footer a:hover {
   }
 
   body.printing-slide #policy-print-container h3 {
-    font-size: 2.8cqw !important;
+    font-size: 2.6cqw !important;
     color: #000000 !important;
     margin-top: 0 !important;
     margin-bottom: 0.2cqw !important;
@@ -1613,7 +1668,7 @@ footer a:hover {
     border: var(--border-width) solid var(--border-color) !important;
     border-radius: var(--radius-md) !important;
     padding: 0.6cqw 0.9cqw !important;
-    box-shadow: none !important;
+    box-shadow: 3px 3px 0px #121212 !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
     page-break-inside: avoid !important;
@@ -1663,7 +1718,7 @@ footer a:hover {
   body.printing-slide #policy-print-container .slide-footer {
     margin-block-start: auto !important;
     padding-block-start: 0.8cqw !important;
-    border-block-start: var(--border-width) solid var(--border-color) !important;
+    border-block-start: none !important;
     font-size: 0.85cqw !important;
     background: transparent !important;
   }
@@ -1673,6 +1728,36 @@ footer a:hover {
     font-size: 0.85cqw !important;
     margin-bottom: 0 !important;
     font-weight: 800 !important;
+  }
+
+  body.printing-slide #policy-print-container .slide-logo-placeholder {
+    display: inline-flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.2cqw !important;
+    width: 5.8cqw !important;
+    height: 5.8cqw !important;
+    aspect-ratio: 1 / 1 !important;
+    border: 1.5px dashed var(--border-color) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 0.4cqw !important;
+    background: rgba(255, 255, 255, 0.85) !important;
+    color: #353234 !important;
+    font-size: 0.8cqw !important;
+    font-weight: 800 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    box-shadow: 2px 2px 0px #121212 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body.printing-slide #policy-print-container .slide-logo-placeholder svg {
+    width: 1.8cqw !important;
+    height: 1.8cqw !important;
+    flex-shrink: 0 !important;
   }
 }
 

@@ -1162,15 +1162,13 @@ function formatSlideList(listValue) {
   }
 
   if (Array.isArray(listValue)) {
-    const cleaned = listValue.map(cleanValue);
-    if (cleaned.length >= 4) {
-      return `<ul>${cleaned.map(item => `<li>${item}</li>`).join("")}</ul>`;
-    } else if (cleaned.length === 3) {
-      return `${cleaned[0]}, ${cleaned[1]} ו${cleaned[2]}`;
-    } else if (cleaned.length === 2) {
-      return `${cleaned[0]} ו${cleaned[1]}`;
-    } else {
+    const cleaned = listValue.map(cleanValue).filter(Boolean);
+    if (cleaned.length >= 2) {
+      return cleaned.slice(0, -1).join(", ") + " ו" + cleaned[cleaned.length - 1];
+    } else if (cleaned.length === 1) {
       return cleaned[0];
+    } else {
+      return "";
     }
   }
 
@@ -1193,7 +1191,7 @@ function buildStudentSlide(answers, forceRegenerate = false) {
   // Also force regeneration if cached html contains deprecated slide-pill or slide-edit-badge elements
   try {
     const savedSlideHtml = localStorage.getItem("hit_policy_edited_slide_html");
-    if (savedSlideHtml && !forceRegenerate && !savedSlideHtml.includes("slide-pill") && !savedSlideHtml.includes("slide-edit-badge") && !savedSlideHtml.includes("אחריות אישית:") && !savedSlideHtml.includes("נדרש לבדוק לפי")) {
+    if (savedSlideHtml && !forceRegenerate && !savedSlideHtml.includes("slide-pill") && !savedSlideHtml.includes("slide-edit-badge") && savedSlideHtml.includes("slide-logo-placeholder") && !savedSlideHtml.includes("אחריות אישית:") && !savedSlideHtml.includes("נדרש לבדוק לפי")) {
       if (slideWrapper) slideWrapper.classList.remove("d-none");
       if (slideEmptyState) slideEmptyState.classList.add("d-none");
 
@@ -1376,14 +1374,25 @@ function buildStudentSlide(answers, forceRegenerate = false) {
 
   const generatedHtml = `
     <div id="slide-editable-content" contenteditable="true" spellcheck="false" class="editable-slide-content">
-      <h3 class="display-6">מדיניות AI בקורס</h3>
-      <p class="text-white-50 fw-bold">הנחיות וכללי שימוש בכלי AI במסגרת הקורס.</p>
+      <div class="slide-header">
+        <div class="slide-header-text">
+          <h3 class="display-6">מדיניות AI בקורס</h3>
+          <p class="text-secondary-emphasis fw-bold">הנחיות וכללי שימוש בכלי AI במסגרת הקורס.</p>
+        </div>
+        <div class="slide-logo-placeholder" contenteditable="false" title="מקום ללוגו המוסד">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+            <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
+          </svg>
+          <span>לוגו מוסד</span>
+        </div>
+      </div>
       <div class="slide-grid ${gridClass}">
         ${cardsHtml}
       </div>
     </div>
     <div class="slide-footer mt-auto">
-      <p class="mb-0 text-white-50 text-center fw-bold">נבנה באמצעות כלי עזר למדיניות שימוש ב-AI בקורס | המרכז לקידום ההוראה HIT</p>
+      <p class="mb-0 text-secondary-emphasis text-center fw-bold">נבנה באמצעות כלי עזר למדיניות שימוש ב-AI בקורס</p>
     </div>
   `;
 
@@ -1482,6 +1491,8 @@ function clearStateFromLocalStorage() {
     localStorage.removeItem("hit_policy_edited_html");
     localStorage.removeItem("hit_policy_completed");
     localStorage.removeItem("hit_policy_edited_slide_html");
+    localStorage.removeItem("hit_policy_accordion_collapse-editor_open");
+    localStorage.removeItem("hit_policy_accordion_collapse-slide_open");
   } catch (error) {
     console.warn("Unable to clear state from localStorage:", error);
   }
@@ -2209,6 +2220,7 @@ function init() {
           initPolicyEditor();
         }
         setPolicyEditorContent(savedHtml);
+        restoreAccordionStates();
       }
     }
   } catch (e) { }
@@ -2387,7 +2399,7 @@ function init() {
     let isPausedLocal = false;
     try {
       isPausedLocal = localStorage.getItem("hit_hero_anim_paused") === "true";
-    } catch (e) {}
+    } catch (e) { }
 
     // Check system preference
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -2404,7 +2416,7 @@ function init() {
 
       try {
         localStorage.setItem("hit_hero_anim_paused", nextPausedState.toString());
-      } catch (e) {}
+      } catch (e) { }
     });
   }
 
@@ -2450,6 +2462,9 @@ function init() {
     if (!el) return;
 
     el.addEventListener("show.bs.collapse", () => {
+      try {
+        localStorage.setItem(`hit_policy_accordion_${id}_open`, "true");
+      } catch (e) { }
       const triggers = document.querySelectorAll(`[data-bs-target="#${id}"]`);
       triggers.forEach(trig => trig.setAttribute("aria-expanded", "true"));
       const btn = document.querySelector(`button[data-bs-target="#${id}"]`);
@@ -2460,6 +2475,9 @@ function init() {
     });
 
     el.addEventListener("hide.bs.collapse", () => {
+      try {
+        localStorage.setItem(`hit_policy_accordion_${id}_open`, "false");
+      } catch (e) { }
       const triggers = document.querySelectorAll(`[data-bs-target="#${id}"]`);
       triggers.forEach(trig => trig.setAttribute("aria-expanded", "false"));
       const btn = document.querySelector(`button[data-bs-target="#${id}"]`);
@@ -2471,7 +2489,33 @@ function init() {
   });
 }
 
-function downloadSlideAsImage() {
+function restoreAccordionStates() {
+  ["collapse-editor", "collapse-slide"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    try {
+      const isOpen = localStorage.getItem(`hit_policy_accordion_${id}_open`) === "true";
+      if (isOpen) {
+        if (window.bootstrap?.Collapse) {
+          const bsCollapse = window.bootstrap.Collapse.getOrCreateInstance(el, { toggle: false });
+          bsCollapse.show();
+        } else {
+          el.classList.add("show");
+        }
+        const triggers = document.querySelectorAll(`[data-bs-target="#${id}"]`);
+        triggers.forEach(trig => trig.setAttribute("aria-expanded", "true"));
+        const btn = document.querySelector(`button[data-bs-target="#${id}"]`);
+        if (btn) {
+          const textSpan = btn.querySelector(".accordion-btn-text");
+          if (textSpan) textSpan.textContent = "הסתר";
+        }
+      }
+    } catch (e) { }
+  });
+}
+
+async function downloadSlideAsImage() {
   const slideCollapseEl = document.getElementById("collapse-slide");
   if (slideCollapseEl && !slideCollapseEl.classList.contains("show")) {
     if (window.bootstrap?.Collapse) {
@@ -2480,6 +2524,7 @@ function downloadSlideAsImage() {
     } else {
       slideCollapseEl.classList.add("show");
     }
+    await new Promise((resolve) => setTimeout(resolve, 350));
   }
 
   const slideEl = document.getElementById("student-slide");
@@ -2487,21 +2532,106 @@ function downloadSlideAsImage() {
     return;
   }
 
-  window.html2canvas(slideEl, {
-    scale: 2,
-    useCORS: true,
-    backgroundColor: null,
-    logging: false
-  }).then((canvas) => {
+  // Measure exact bounding dimensions on screen
+  const rect = slideEl.getBoundingClientRect();
+  const width = Math.round(rect.width) || slideEl.offsetWidth || 1200;
+  const height = Math.round(rect.height) || slideEl.offsetHeight || 675;
+
+  // 1. Create an isolated off-screen export container directly under document.body
+  const exportWrapper = document.createElement("div");
+  exportWrapper.style.position = "fixed";
+  exportWrapper.style.left = "-9999px";
+  exportWrapper.style.top = "0";
+  exportWrapper.style.width = width + "px";
+  exportWrapper.style.height = height + "px";
+  exportWrapper.style.zIndex = "-9999";
+  exportWrapper.style.containerType = "inline-size";
+  exportWrapper.style.overflow = "hidden";
+  exportWrapper.style.background = "#ffffff";
+
+  // 2. Clone the live slide element
+  const clonedSlide = slideEl.cloneNode(true);
+  clonedSlide.style.width = width + "px";
+  clonedSlide.style.height = height + "px";
+  clonedSlide.style.background = "linear-gradient(135deg, #f7fce6 0%, #e7f698 50%, #e2e8f5 100%)";
+  clonedSlide.style.color = "#121212";
+  clonedSlide.style.boxSizing = "border-box";
+
+  // Remove contenteditable attributes from cloned elements to prevent rendering quirks
+  clonedSlide.removeAttribute("contenteditable");
+  clonedSlide.querySelectorAll("[contenteditable]").forEach((el) => el.removeAttribute("contenteditable"));
+
+  exportWrapper.appendChild(clonedSlide);
+  document.body.appendChild(exportWrapper);
+
+  exportWrapper.style.fontFamily = "var(--font-body), 'Assistant', sans-serif";
+  clonedSlide.style.fontFamily = "var(--font-body), 'Assistant', sans-serif";
+
+  // 3. Resolve all cqw units to exact computed pixel values from the live element on screen
+  const sourceElements = slideEl.querySelectorAll("*");
+  const clonedElements = clonedSlide.querySelectorAll("*");
+
+  sourceElements.forEach((sourceEl, i) => {
+    const clonedEl = clonedElements[i];
+    if (!clonedEl) {
+      return;
+    }
+
+    const comp = window.getComputedStyle(sourceEl);
+    clonedEl.style.fontSize = comp.fontSize;
+    clonedEl.style.fontFamily = comp.fontFamily;
+    clonedEl.style.fontWeight = comp.fontWeight;
+    clonedEl.style.fontStyle = comp.fontStyle;
+    clonedEl.style.textAlign = comp.textAlign;
+    clonedEl.style.letterSpacing = comp.letterSpacing;
+    clonedEl.style.lineHeight = comp.lineHeight;
+    clonedEl.style.padding = comp.padding;
+    clonedEl.style.margin = comp.margin;
+    clonedEl.style.gap = comp.gap;
+    clonedEl.style.boxShadow = comp.boxShadow;
+    clonedEl.style.borderRadius = comp.borderRadius;
+    clonedEl.style.border = comp.border;
+    clonedEl.style.color = comp.color;
+    clonedEl.style.width = comp.width;
+    clonedEl.style.height = comp.height;
+    clonedEl.style.minWidth = comp.minWidth;
+    clonedEl.style.display = comp.display;
+    clonedEl.style.flexDirection = comp.flexDirection;
+    clonedEl.style.alignItems = comp.alignItems;
+    clonedEl.style.justifyContent = comp.justifyContent;
+
+    if (comp.backgroundColor && comp.backgroundColor !== "rgba(0, 0, 0, 0)" && comp.backgroundColor !== "transparent") {
+      clonedEl.style.backgroundColor = comp.backgroundColor;
+    }
+  });
+
+  // Short delay to ensure browser paint cycle completes
+  await new Promise((resolve) => setTimeout(resolve, 60));
+
+  try {
+    const canvas = await window.html2canvas(clonedSlide, {
+      scale: 2,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: "#ffffff",
+      logging: false,
+      width: width,
+      height: height
+    });
+
     const imgData = canvas.toDataURL("image/png");
     const link = document.createElement("a");
     link.href = imgData;
     link.download = "מדיניות_AI_קורס_שקף.png";
     link.click();
-  }).catch((err) => {
+  } catch (err) {
     console.error("Error generating slide image:", err);
     alert("מצטערים, אירעה שגיאה ביצירת קובץ התמונה.");
-  });
+  } finally {
+    if (document.body.contains(exportWrapper)) {
+      document.body.removeChild(exportWrapper);
+    }
+  }
 }
 
 function downloadSlideAsPdf() {
