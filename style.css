@@ -1,4 +1,63 @@
 /* ================================
+   Custom Font Declarations - FoodiFOT
+   ================================ */
+@font-face {
+  font-family: "FoodiFOT";
+  src: url("assets/Fonts/FoodiFOT-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "FoodiFOT";
+  src: url("assets/Fonts/FoodiFOT-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "FoodiFOT";
+  src: url("assets/Fonts/FoodiFOT-Regular.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "FoodiFOT";
+  src: url("assets/Fonts/FoodiFOT-Bold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "FoodiFOT";
+  src: url("assets/Fonts/FoodiFOT-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "FoodiFOT";
+  src: url("assets/Fonts/FoodiFOT-Black.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "FoodiFOT";
+  src: url("assets/Fonts/FoodiFOT-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ================================
    Design System - HIT AI Policy (Neobrutalist Theme)
    ================================ */
 
@@ -35,8 +94,8 @@
   --color-warning-soft: #fef08a;
   /* Bright yellow */
 
-  --font-heading: "Assistant", Arial, sans-serif;
-  --font-body: "Assistant", Arial, sans-serif;
+  --font-heading: "FoodiFOT", "Assistant", Arial, sans-serif;
+  --font-body: "FoodiFOT", "Assistant", Arial, sans-serif;
   --space-2: 0.5rem;
   --space-3: 1rem;
 }
@@ -1333,7 +1392,7 @@ main>section:not(#builder) {
   margin-bottom: 0 !important;
   font-size: 0.85cqw !important;
   font-weight: 800 !important;
-  font-family: var(--font-body), 'Assistant', sans-serif !important;
+  font-family: var(--font-body), 'FoodiFOT', sans-serif !important;
 }
 
 /* Slide Card Grid Layout with centered partial rows */

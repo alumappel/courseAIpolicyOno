@@ -2558,8 +2558,8 @@ async function downloadSlideAsImage() {
   exportWrapper.appendChild(clonedSlide);
   document.body.appendChild(exportWrapper);
 
-  exportWrapper.style.fontFamily = "var(--font-body), 'Assistant', sans-serif";
-  clonedSlide.style.fontFamily = "var(--font-body), 'Assistant', sans-serif";
+  exportWrapper.style.fontFamily = "var(--font-body), 'FoodiFOT', sans-serif";
+  clonedSlide.style.fontFamily = "var(--font-body), 'FoodiFOT', sans-serif";
 
   // 3. Resolve all cqw units to exact computed pixel values from the live element on screen
   const sourceElements = slideEl.querySelectorAll("*");
