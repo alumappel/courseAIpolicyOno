@@ -309,8 +309,6 @@ const formConfig = [
     sectionTitle: "6. נקודה למחשבה: שוויון, הכללה ונגישות לטכנולוגיה",
     intro:
       "השאלות הבאות נועדו לחשיבה פדגוגית עבורכם. אין חובה לענות עליהן כדי להפיק את המדיניות, אבל הן עוזרות לוודא שהמדיניות רואה את כלל הסטודנטים.",
-    callout:
-      'ניתן למצוא <a href="https://md.hit.ac.il/course/view.php?id=22997" target="_blank" rel="noopener">בסביבת TeachHIT</a>  מגוון תכנים שתוכלו לשלב בקורס, כדוגמת <a href="https://md.hit.ac.il/mod/page/view.php?id=839699" target="_blank" rel="noopener">סדרת יחידות הלמידה "מעבר לפרומפט"</a>, <a href="https://md.hit.ac.il/mod/page/view.php?id=866018&forceview=1" target="_blank" rel="noopener">מדריך לסקירת ספרות מיטבית</a> ועוד.',
     questions: [
       {
         id: "equity_paid_tools",
@@ -1191,7 +1189,7 @@ function buildStudentSlide(answers, forceRegenerate = false) {
   // Also force regeneration if cached html contains deprecated slide-pill or slide-edit-badge elements
   try {
     const savedSlideHtml = localStorage.getItem("hit_policy_edited_slide_html");
-    if (savedSlideHtml && !forceRegenerate && !savedSlideHtml.includes("slide-pill") && !savedSlideHtml.includes("slide-edit-badge") && savedSlideHtml.includes("slide-logo-placeholder") && !savedSlideHtml.includes("אחריות אישית:") && !savedSlideHtml.includes("נדרש לבדוק לפי")) {
+    if (savedSlideHtml && !forceRegenerate && !savedSlideHtml.includes("slide-pill") && !savedSlideHtml.includes("slide-edit-badge") && !savedSlideHtml.includes("slide-logo-placeholder") && savedSlideHtml.includes("slide-logo-wrapper") && !savedSlideHtml.includes("אחריות אישית:") && !savedSlideHtml.includes("נדרש לבדוק לפי")) {
       if (slideWrapper) slideWrapper.classList.remove("d-none");
       if (slideEmptyState) slideEmptyState.classList.add("d-none");
 
@@ -1379,12 +1377,8 @@ function buildStudentSlide(answers, forceRegenerate = false) {
           <h3 class="display-6">מדיניות AI בקורס</h3>
           <p class="text-secondary-emphasis fw-bold">הנחיות וכללי שימוש בכלי AI במסגרת הקורס.</p>
         </div>
-        <div class="slide-logo-placeholder" contenteditable="false" title="מקום ללוגו המוסד">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16" aria-hidden="true">
-            <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
-            <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
-          </svg>
-          <span>לוגו מוסד</span>
+        <div class="slide-logo-wrapper" contenteditable="false" title="לוגו הקרייה האקדמית אונו">
+          <img src="assets/logo/onoCenterLogo.png?v=1.0.56" alt="לוגו הקרייה האקדמית אונו" class="slide-logo-img" />
         </div>
       </div>
       <div class="slide-grid ${gridClass}">

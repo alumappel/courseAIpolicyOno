@@ -272,7 +272,7 @@ main>section:not(#builder) {
    Navbar Redesign
    ================================ */
 .logo-img {
-  block-size: 54px;
+  block-size: 70px;
   inline-size: auto;
   max-inline-size: min(100%, 17rem);
 }
@@ -1273,6 +1273,24 @@ main>section:not(#builder) {
   flex-grow: 1;
 }
 
+.slide-logo-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  max-width: 15cqw;
+  max-height: 5.8cqw;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.slide-logo-img {
+  max-width: 100%;
+  max-height: 5.8cqw;
+  object-fit: contain;
+  height: auto;
+  display: block;
+}
+
 .slide-logo-placeholder {
   display: inline-flex;
   flex-direction: column;
@@ -1745,6 +1763,25 @@ footer a:hover {
     font-weight: 800 !important;
   }
 
+  body.printing-slide #policy-print-container .slide-logo-wrapper {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    max-width: 15cqw !important;
+    max-height: 5.8cqw !important;
+    flex-shrink: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body.printing-slide #policy-print-container .slide-logo-img {
+    max-width: 100% !important;
+    max-height: 5.8cqw !important;
+    object-fit: contain !important;
+    height: auto !important;
+    display: block !important;
+  }
+
   body.printing-slide #policy-print-container .slide-logo-placeholder {
     display: inline-flex !important;
     flex-direction: column !important;
@@ -1899,4 +1936,8 @@ footer a:hover {
 
 .modal-footer {
   border-top: var(--border-width) solid var(--border-color) !important;
+}
+
+.intro-card-text {
+  flex: 1 1 auto;
 }
