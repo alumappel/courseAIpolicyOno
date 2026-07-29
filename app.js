@@ -1386,7 +1386,7 @@ function buildStudentSlide(answers, forceRegenerate = false) {
       </div>
     </div>
     <div class="slide-footer mt-auto">
-      <p class="mb-0 text-secondary-emphasis text-center fw-bold">נבנה באמצעות כלי עזר למדיניות שימוש ב-AI בקורס</p>
+      <p class="mb-0 text-secondary-emphasis text-center fw-bold">הופק בעזרת כלי עזר לניסוח מדניות שימוש ב-AI בקורס</p>
     </div>
   `;
 
