@@ -389,8 +389,20 @@ function renderForm(config) {
       sectionEl.appendChild(callout);
     }
 
+    let currentList = null;
     section.questions.forEach((question) => {
-      sectionEl.appendChild(renderQuestion(question, section.sectionId));
+      const questionEl = renderQuestion(question, section.sectionId);
+      if (question.type === "reflection") {
+        if (!currentList) {
+          currentList = document.createElement("ul");
+          currentList.className = "reflection-questions-list";
+          sectionEl.appendChild(currentList);
+        }
+        currentList.appendChild(questionEl);
+      } else {
+        currentList = null;
+        sectionEl.appendChild(questionEl);
+      }
     });
 
     formSectionsEl.appendChild(sectionEl);
@@ -398,11 +410,11 @@ function renderForm(config) {
 }
 
 function renderQuestion(question, sectionId) {
-  const wrapper = document.createElement("div");
+  const wrapper = document.createElement(question.type === "reflection" ? "li" : "div");
   wrapper.className = "question-block";
   wrapper.id = `${question.id}-block`;
   if (question.type === "reflection") {
-    wrapper.classList.add("question-block--reflection");
+    wrapper.classList.add("question-block--reflection", "reflection-question-item");
   }
 
   const fieldset = document.createElement("fieldset");
@@ -1770,12 +1782,23 @@ function showQuestion(index, options = {}) {
     wrapper.appendChild(createCalloutElement(page.sectionCallout, `${page.sectionId}-callout-shown`));
   }
 
+  let currentList = null;
   page.questions.forEach((question, questionIndex) => {
     const questionEl = renderQuestion(question, question.sectionId);
-    if (page.questions.length > 1 && questionIndex === 0) {
-      questionEl.classList.add("question-block--mb-3");
+    if (question.type === "reflection") {
+      if (!currentList) {
+        currentList = document.createElement("ul");
+        currentList.className = "reflection-questions-list";
+        wrapper.appendChild(currentList);
+      }
+      currentList.appendChild(questionEl);
+    } else {
+      currentList = null;
+      if (page.questions.length > 1 && questionIndex === 0) {
+        questionEl.classList.add("question-block--mb-3");
+      }
+      wrapper.appendChild(questionEl);
     }
-    wrapper.appendChild(questionEl);
   });
 
   if (page.sectionCallout && page.calloutPlacement === "afterQuestions") {
