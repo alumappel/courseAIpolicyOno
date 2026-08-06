@@ -1,13 +1,13 @@
 const formConfig = [
   {
     sectionId: "rationale",
-    sectionTitle: "1. הרציונל – למה יש מדיניות AI לקורס",
+    sectionTitle: "1. לחזק את הלמהש מדיניות AI לקורס",
     intro:
-      "כאן נרצה לחדד עבורנו ועבור הסטודנטים את מה שעומד מאחורי המדיניות ואיך היא חשובה ללמידה שלהם.",
+      "כאן מבהירים מה המדיניות נועדה לשרת, ואיך היא תומכת במטרות הלמידה של הקורס.",
     questions: [
       {
         id: "course_goals",
-        label: "מה הידע ומיומנויות הליבה שהקורס נועד להקנות?",
+        label: "מה אופי הידע ומיומנויות שחשוב שההסטודנטים ירכשו בקורס?",
         type: "checkbox",
         required: true,
         options: [
@@ -28,7 +28,7 @@ const formConfig = [
       },
       {
         id: "ai_skills",
-        label: "אילו מיומנויות שימוש ב-AI רצוי שהסטודנטים ירכשו בקורס?",
+        label: "אילו מיומנויות עבודה עם AI חשוב שהסטודנטים יפתחו בקורס?",
         type: "checkbox",
         required: true,
         options: [
@@ -47,7 +47,7 @@ const formConfig = [
       },
       {
         id: "skills_at_risk",
-        label: "באילו מיומנויות שימוש ב-AI בזמן הלמידה עלול לפגוע?",
+        label: "במה שימוש ב-AI בזמן הלמידה בקורס עלול לפגוע?",
         type: "checkbox",
         required: true,
         options: [
@@ -67,13 +67,13 @@ const formConfig = [
   },
   {
     sectionId: "boundaries",
-    sectionTitle: "2. גבולות הגזרה – מה מותר ומה אסור",
+    sectionTitle: "2. לשרטט את גבולות הגזרהע בקורס: מה מותר ואסור לבצע בקורס – מה מותר ומה אסור",
     intro:
-      "בשלב זה אנחנו רוצים לנסח בצורה ברורה וחד משמעית איפה עובר הגבול בין מותר לאסור, לצד דוגמאות קונקרטיות לשימוש רצוי.",
+      "זה הזמן להגדיר בבירור מה מותר, מה מוגבל ומה מחוץ לתחום, כדי לצמצם אי-ודאות ולחזק אמון. שימו לב להגדיר גבולות שתוכלו לנטר ולאכוף.",
     questions: [
       {
         id: "allowed_stages",
-        label: "באילו שלבים בקורס מותר ואף מומלץ להיעזר בבינה מלאכותית?",
+        label: "באילו שלבים בקורס מותר ואף מומלץ לבצע שימוש בAI?",
         type: "checkbox",
         required: true,
         options: ["במהלך השיעורים והתרגולים בקורס", "מטלות האמצע", "מטלה מסכמת", "למידה עצמית בין השיעורים"],
@@ -82,22 +82,22 @@ const formConfig = [
       },
       {
         id: "boundary_level",
-        label: "מהם הקווים האדומים בקורס?",
+        label: "מה רמת השימוש ב-AI המותרת בקורס?",
         helpText: "בחרו את הרמה המתאימה או נסחו הגדרה מותאמת אישית.",
         type: "radio",
         required: true,
         options: [
-          "רמה 1: איסור מוחלט – אין לעשות שימוש ב-AI באף חלק בקורס, לרבות למידה עצמית על החומר.",
-          "רמה 2: שימוש כעוזר למידה בלבד – הסבר מושגים, תרגום וסיעור מוחות, ללא שילוב תוצרי AI בעבודות להגשה.",
-          "רמה 3: שילוב מבוקר – מותר להשתמש לעריכה לשונית, איסוף מידע והפקת חלקי תוצרים תוך דיווח וביקורת.",
-          "רמה 4: אין הגבלה על שימוש בAI בקורס – מומלץ ונדרש לבצע שימוש נרחב ב-AI בקורס תוך דיווח, ביקורת ושיקול דעת."
+          "רמה 1: אין לבצע שימוש בטכנולוגיה – חל איסור על שימוש ב־AI בכל חלקי הקורס, כולל בלמידה עצמאית.",
+          "רמה 2: שימוש בAI כעוזר למידה – ניתן להשתמש בטכנולוגיה לחיזוק הלמידה בקורס, לדוגמה עבור הסבר מושגים או תרגום וסיעור מוחות. חל איסור על שילוב תוצרי AI במטלות להגשה.",
+          "רמה 3: שילוב מפוקח חלקי – ניתן להיעזר ב־AI לעריכה, לאיסוף מידע ולהפקת חלקים מהתוצר, לצד דיווח ובדיקה ביקורתית. אין לבצע הפקה מלאה של תוצרים ב-AI. ",
+          "רמה 4: שילוב מלא – אפשר ואף רצוי להשתמש ב־AI לאורך הקורס, אין הגבלה על אופי השימוש בטכנולוגיה, על הסטודנטים לדווח על השימוש, לבדוק את התוצרים ולהפעיל שיקול דעת."
         ],
         allowOther: true,
         otherLabel: "אני רוצה להגדיר לבד"
       },
       {
         id: "recommended_ai",
-        label: "אילו כלים ו/או שימושים מומלצים ללמידה בקורס?",
+        label: "באילו כלים ולאילו שימושים מומלץ להיעזר בAI בקורס?",
         helpText: "מומלץ לבחור 2–3 דוגמאות לפחות. אפשר לבחור מכל צד כמה פריטים שרוצים.",
         type: "dual-checkbox",
         required: true,
@@ -130,7 +130,7 @@ const formConfig = [
               "Claude",
               "Google Gemini",
               "Perplexity",
-              "NotebookLM",
+              "Gemini Notebook",
               "Elicit",
               "Consensus",
               "Canva AI",
@@ -151,41 +151,41 @@ const formConfig = [
   },
   {
     sectionId: "responsibility",
-    sectionTitle: "3. אחריות הסטודנט/ית",
+    sectionTitle: "3. להבהיר מי האחראי/ית/ית",
     intro:
-      "חשוב לנו להסביר בצורה ברורה לסטודנטים את תחומי האחריות שלהם, במיוחד בתקופה שבה אמינות המידע והפער בין אדם למכונה מטשטשים.",
+      "היו ברורים וישירים, השימוש ב-AI אינו מחליף אחריות אישית, אקדמית ואתית על התוצר המוגש.",
     questions: [
       {
         id: "student_responsibility",
-        label: "מה אחריות הסטודנט על התוצרים שהוא יוצר מבחינתכם?",
+        label: "מי אחראי על התוצרים אשר נוצרו בAI במסגרת הקורס?כם?",
         type: "radio",
         required: true,
         options: [
-          "נוסח מוצע: על הסטודנט או הסטודנטית חלה האחריות המלאה על התוצרים המוגשים במסגרת הקורס. עליו או עליה לוודא את מהימנות המידע, לשים לב להטיות ולהזיות, לוודא את עמידת התוצר בדרישות המטלה ולשמור על כללי אתיקה, זכויות יוצרים ופרטיות. השימוש ב-AI לא פוטר מאחריות אישית ואקדמית."
+          "נוסח מוצע: האחריות המלאה על כל תוצר שנוצר או מוגש במסגרת הקורס שייכת לסטודנטים היוצרים. יש לבדוק את מהימנות המידע, לזהות טעויות והטיות, לוודא שהתוצר עומד בדרישות המטלה, ולפעול בהתאם לכללי האתיקה, זכויות היוצרים והפרטיות. שימוש ב־AI אינו מחליף אחריות אישית ואקדמית."
         ],
         allowOther: true,
         otherLabel: "כתיבה חופשית"
       },
       {
         id: "verification_level",
-        label: "כיצד ולאיזו רמה נדרש הסטודנט לוודא את אמינות ונכונות המידע שקיבל מ-AI?",
+        label: "מה רמת בדיקת האמינות הנדרשת למידע שמתקבל מ־AI?",
         type: "radio",
         required: true,
         options: [
-          "רמה 1: בדיקה מול חומרי הקורס",
-          "רמה 2: בדיקה מול מגוון מקורות דיגיטליים שאינם בהכרח אקדמיים",
-          "רמה 3: בדיקה מול מספר מקורות אקדמיים ואתרים של גופים רשמיים, כולל תיעוד המקורות"
+          "בדיקה בסיסית: בדיקה מול חומרי הקורס",
+          "בדיקה רחבה: בדיקה מול מגוון מקורות דיגיטליים שאינם בהכרח אקדמיים",
+          "בדיקה מעמיקה: בדיקה מול מספר מקורות אקדמיים ואתרים של גופים רשמיים, כולל תיעוד המקורות"
         ]
       },
       {
         id: "privacy_warnings",
-        label: "האם יש אזהרה שחשוב לתת לסטודנטים לגבי פרטיות ואבטחת מידע?",
+        label: "האם ישנם דגשים בנושאי פרטיות ואבטחת מידע הרלוונטיים לקורס?",
         type: "checkbox",
         required: true,
         helpText:
-          "השאלה מיועדת במיוחד לקורסים פרויקטליים, לקוחות חיצוניים, בריאות, טיפול, משפט או כל הקשר שבו עלול להיות מידע רגיש.",
+          "סעיף זה חשוב במיוחד בקורסים שעוסקים בפרויקטים, בלקוחות חיצוניים, בבריאות, בטיפול או במשפט, ובכל מצב שבו עשוי להיות מידע רגיש.",
         options: [
-          "אין להזין לכלי AI מידע רגיש, חסוי או מזהה של סטודנטים או של אנשים אחרים.",
+          "אין להזין לכלי AI מידע אישי, רגיש, חסוי או מזהה של סטודנטים או של אנשים אחרים.",
           "אין להעלות חומרים פנימיים של ארגונים, מוסדות או לקוחות.",
           "אין להעלות נתונים רפואיים, טיפוליים או משפטיים."
         ],
@@ -196,13 +196,13 @@ const formConfig = [
   },
   {
     sectionId: "transparency",
-    sectionTitle: "4. שקיפות וחובת דיווח",
+    sectionTitle: "4. להסדיר את פורמט הדיווח הקורס הקורס",
     intro:
-      "שקיפות בשימוש ב-AI מחזקת חשיבה ביקורתית ואחריות אישית. אי לכך חשוב לתאם ציפיות מראש לגבי אופן הדיווח לאורך תהליך העבודה.",
+      "הגדירו איך מדווחים על שימוש ב-AI, כדי לחזק שקיפות, אחריות ובהירות. סעיף זה משקף את דרישותיכם ברמה הטכנית ונועד כדי לייצר פורמט אחיד וברור עבור הסטודנטים.",
     questions: [
       {
         id: "reporting_scope",
-        label: "מה היקף או עומק הדיווח הרצויים מבחינתכם במסגרת כתיבת מטלות?",
+        label: "איזה מידע על הסטודנטים לכלול במסגרת דיווח שימוש בAI במטלות הקורס?",
         type: "checkbox",
         required: true,
         options: [
@@ -212,21 +212,21 @@ const formConfig = [
           "תיעוד שיחה מלא או לינק לשיחה",
           "השלב במטלה או בקורס שבו נעשה השימוש",
           "תהליך בדיקת האמינות שנעשה",
-          "רפלקציה על השימוש בהתאם לשאלות מנחות שינתנו בכיתה"
+          "רפלקציה על השימוש בהתאם לשאלות מנחות שינתנו בהנחיות המטלה"
         ],
         allowOther: true,
         otherLabel: "אחר"
       },
       {
         id: "reporting_format",
-        label: "צורת הדיווח המועדפת",
+        label: "מהי תבנית הדיווח בקורס?",
         type: "radio",
         required: true,
         options: [
           {
             value: "תבנית בסיס: הצהרת שימוש ב-AI במטלות",
             titleHtml:
-              '<a href="assets/files/הצהרה על שימוש בכלי בינה מלאכותית במטלות.docx" target="_blank" rel="noopener">תבנית בסיס: הצהרת שימוש ב-AI במטלות</a>'
+              '<a href="assets/files/הצהרה על שימוש בכלי בינה מלאכותית במטלות.docx" target="_blank" rel="noopener">תבנית בסיס: יש להעלות קובץ עדכני של אונו</a>'
           },
           {
             value: "קישור לתבנית שלכם",
@@ -242,7 +242,7 @@ const formConfig = [
       },
       {
         id: "reporting_timing",
-        label: "באילו מועדים או משימות הסטודנט נדרש לדווח על שימוש ב-AI?",
+        label: "מתי הסטודנטים נדרשים לדווח על שימוש ב-AI?",
         type: "checkbox",
         required: true,
         options: ["בכל מטלה שבה נעשה שימוש ב-AI", "במטלת האמצע", "במטלה מסכמת"],
@@ -251,14 +251,14 @@ const formConfig = [
       },
       {
         id: "citation_guidance",
-        label: "כיצד על הסטודנטים להפנות ולצטט תוכן שנוצר על ידי AI?",
+        label: "כיצד על הסטודנטים לצטט ולהפנות לתוכן שנוצר על ידי AI בכתיבה האקדמית?",
         type: "textarea",
         required: false,
-        placeholder: "אפשר לציין כאן הנחיות הציטוט הביבליוגרפי המקובלות בקורס, או הנחיה לדווח על שם הכלי, תאריך ואופי השימוש."
+        placeholder: "ניתן לציין כאן את כללי הציטוט הביבליוגרפי המקובלים בקורס."
       },
       {
         id: "mastery_checks",
-        label: "כיצד תיבדק בקיאות הסטודנטים בחומר או בעבודה?",
+        label: "כיצד תיבדק בקיאות הסטודנטים בחומר הנלמד ובמטלה שהוגשה?",
         type: "checkbox",
         required: true,
         options: [
@@ -274,13 +274,13 @@ const formConfig = [
   },
   {
     sectionId: "enforcement",
-    sectionTitle: "5. אכיפה והשלכות",
+    sectionTitle: "5. להבהיר את ההשלכות",
     intro:
-      "אחרי שהגדרנו את גבולות הגזרה, חשוב לשקף לסטודנטים את ההשלכות של אי-עמידה בהם, <strong>תוך התאמה לנהלי המכון והפקולטה</strong>.",
+      "בחלק זה עליכם לשקף לסטודנטים מה קורה כאשר הם לא עומדי בגבולות שהגדרתם או בתיעוד הנדרש. הקפידו להיות ברורים לגבי ההשלכות האפשריות ושימו לב שאתם יכולים לאכוף אותן. איומי סרק יפגעו באמינות שלכם מול הסטודנטים. <strong>יש להקפיד על עמידה ותאימות מוחלטת לנהלי המוסד והפקולטה</strong>.הם, <strong>תוך התאמה לנהלי המכון והפקולטה</strong>.",
     questions: [
       {
         id: "boundary_consequences",
-        label: "מה ההשלכות לשימוש ב-AI מחוץ לגבולות המותרים?",
+        label: "מה ההשלכות לשימוש ב-AI החורג מחוץ לגבולות שהוגדרו בקורס?",
         type: "checkbox",
         required: true,
         options: ["דרישה לתיקון או להגשה חוזרת", "דרישה לביצוע הגנה בעל פה על העבודה", "הפחתת ניקוד", "פסילת רכיב מסוים במטלה"],
@@ -289,7 +289,7 @@ const formConfig = [
       },
       {
         id: "reporting_consequences",
-        label: "מה ההשלכות לאי-דיווח על שימוש ב-AI?",
+        label: "מה ההשלכות לאי-דיווח על שימוש ב-AI או ביצוע דיווח חלקי שאינו תואם לדרישות הקורס?",
         type: "checkbox",
         required: true,
         options: [
@@ -306,19 +306,19 @@ const formConfig = [
   },
   {
     sectionId: "equity",
-    sectionTitle: "6. נקודה למחשבה: שוויון, הכללה ונגישות לטכנולוגיה",
+    sectionTitle: "6. זה הזמן לוודא שאנחנו שומרים על הוגנות",
     intro:
-      "השאלות הבאות נועדו לחשיבה פדגוגית עבורכם. אין חובה לענות עליהן כדי להפיק את המדיניות, אבל הן עוזרות לוודא שהמדיניות רואה את כלל הסטודנטים.",
+      "רגע לפני סיום, וודאו שהמדיניות מתחשבת בכלל הסטודנטיות והסטודנטים: בפערי גישה, זמינות ואוריינות טכנולוגית. השאלות בסעיף זה נועדו לעורר מחשבה על הקורס ואין צורך לענות עליהן בממשק.",
     questions: [
       {
         id: "equity_paid_tools",
-        label: "האם השימושים המומלצים בקורס דורשים גישה לכלים בתשלום, ואם כן מהי החלופה ההוגנת?",
+        label: "האם הקורס נשען על כלים בתשלום? אם כן, איזו חלופה או פתרון חלופי יהיה זמין לסטודנטיות ולסטודנטים שאינם יכולים לעמוד בעלות הכלים?",
         type: "reflection",
         required: false
       },
       {
         id: "equity_support",
-        label: "אילו כלים או תמיכה אפשר להציע לסטודנטים שיש להם פערי אוריינות בכלי AI?",
+        label: "אילו משאבים או סוגי תמיכה ניתן להציע לסטודנטיות ולסטודנטים המגיעים לקורס עם פערי אוריינות שימוש ב-AI?",
         type: "reflection",
         required: false
       }
@@ -828,7 +828,7 @@ function renderValidationSummary(errors) {
   validationSummaryEl.hidden = false;
   validationSummaryEl.innerHTML = `
     <h3 class="h5 mb-3">שימו לב, יש שאלות שלא מולאו עדיין</h3>
-    <p class="mb-2">אפשר לחזור אליהן דרך הקישורים הבאים, או לאשר בהמשך שתרצו לדלג עליהן:</p>
+    <p class="mb-2">ניתן לחזור אליהן דרך הקישורים הבאים, או לאשר בהמשך שתרצו לדלג עליהן:</p>
     <ul class="mb-0">
       ${errors
       .map(
@@ -928,17 +928,17 @@ function buildPolicyText(answers) {
 
   const text = `מדיניות שימוש ב-AI בקורס
 
-רציונל
+מה עומד מאחורי המדיניות?
 מטרת מדיניות השימוש בבינה מלאכותית בקורס היא שמירה על מטרות הקורס ואיכות הלמידה בעידן בו כלי AI נגישים וזמינים לסטודנטים. כחלק ממטרות הקורס תרכשו מיומנויות וידע בתחומים הבאים: ${goals}. בקורס נעסוק גם ברכישה של מיומנויות שימוש בבינה מלאכותית כגון: ${aiSkills}. עם זאת, אנו מתייחסים ברצינות לשימוש בבינה מלאכותית בקורס על מנת לקדם את הלמידה שלכם. חשוב לנו לצמצם פגיעה אפשרית בתחומים הבאים: ${risks}.
 
-גבולות הגזרה
+גבולות הגזרה: מה מותר ואסור לבצע בקורס: מה מותר ואסור לבצע בקורס
 השימוש ב-AI מותר ואף מומלץ בעיקר בשלבים או בהקשרים הבאים: ${allowedStages}. הקו המנחה המרכזי בקורס הוא: ${answers.boundary_level}. דוגמאות לשימושים מומלצים בקורס: ${recommendedUses}. הכלים המומלצים לשימוש במסגרת הקורס הם: ${recommendedTools}.
 
-אחריות הסטודנט
+אחריות הסטודנט/ית
 ${answers.student_responsibility}
 רמת בדיקת האמינות המצופה מהסטודנטים היא: ${answers.verification_level}. בנוסף, יש להקפיד על ההנחיות הבאות בנושאי פרטיות ואבטחת מידע: ${privacyWarnings}.
 
-שקיפות וחובת דיווח
+חוות הדיווח במסגרת הקורס הקורס
 כאשר נעשה שימוש ב-AI, הסטודנטים נדרשים לדווח לפחות על הפרטים הבאים: ${reportingScope}. ${reportingFormat} הדיווח נדרש במצבים הבאים: ${reportingTiming}. ${citationText} בקיאות הסטודנטים בחומר ובעבודה עשויה להיבדק גם באמצעות: ${masteryChecks}.
 
 אכיפה והשלכות
@@ -1056,7 +1056,7 @@ function buildPolicyHtml(answers) {
   const policyLink = sanitizeUrl(answers.reporting_format_link);
   const citationGuidance = getAnswerText(answers.citation_guidance);
   const equityBlock = [answers.equity_paid_tools, answers.equity_support].filter((value) => hasMeaningfulAnswer(value));
-  const sections = ['<h2>מדיניות שימוש ב-AI בקורס</h2>'];
+  const sections = ['<h2>מדיניות שימוש ב-AI בקורס ________</h2>'];
 
   const addSection = (title, items) => {
     if (!items.length) {
@@ -1069,25 +1069,25 @@ function buildPolicyHtml(answers) {
 
   const rationaleItems = [];
   if (goals) {
-    rationaleItems.push(`כחלק ממטרות הקורס תרכשו מיומנויות וידע בתחומים הבאים: ${goals}.`);
+    rationaleItems.push(`בקורס נעסוק ברכישת ידע ופיתוח המיומנויות הבאות: ${goals}.`);
   }
   if (aiSkills) {
-    rationaleItems.push(`בקורס נעסוק גם ברכישה של מיומנויות שימוש בבינה מלאכותית כגון: ${aiSkills}.`);
+    rationaleItems.push(`כמו כן, במסגרת הקורס תרכשו גם מיומנויות שימוש ב-AI כגון: ${aiSkills}.`);
   }
   if (risks) {
-    rationaleItems.push(`אנו מתייחסים ברצינות לשימוש בבינה מלאכותית בקורס על מנת לקדם את הלמידה שלכם. חשוב לנו לצמצם פגיעה אפשרית בתחומים הבאים: ${risks}.`);
+    rationaleItems.push(`כדי לתמוך במטרות הקורס ובפיתוח הידע והמיומנויות הנדרשים בו, חשוב להשתמש ב־AI באופן מושכל. גבולות השימוש בקורס נועדו לצמצם פגיעה אפשרית בתחומים הבאים: ${risks}.`);
   }
   if (rationaleItems.length) {
-    rationaleItems.unshift("מטרת מדיניות השימוש בבינה מלאכותית בקורס היא שמירה על מטרות הקורס ואיכות הלמידה בעידן בו כלי AI נגישים וזמינים לסטודנטים.");
+    rationaleItems.unshift("מטרת מדיניות השימוש בבינה מלאכותית בקורס היא לשמר ולחזק את הלמידה בקורס. המדיניות מחברת בין השימוש ב־AI לבין מטרות הקורס, ותומכת בלמידה משמעותית, עצמאית ואיכותית.");
   }
-  addSection("רציונל", rationaleItems);
+  addSection("מה עומד מאחורי המדיניות?", rationaleItems);
 
   const boundaryItems = [];
   if (allowedStages) {
-    boundaryItems.push(`השימוש ב-AI מותר ואף מומלץ בעיקר בשלבים או בהקשרים הבאים: ${allowedStages}.`);
+    boundaryItems.push(`במהלך הקורס אפשר ואף רצוי להיעזר ב־AI בנקודות שבהן הוא תומך בלמידה ובתהליך העבודה. אלה השלבים וההקשרים שבהם השימוש מומלץ: ${allowedStages}.`);
   }
   if (boundaryLevel) {
-    boundaryItems.push(`הקו המנחה המרכזי בקורס הוא: ${boundaryLevel}.`);
+    boundaryItems.push(`הקו המנחה המרכזי לאופי שילוב הטכנולוגיה בקורס הוא: ${boundaryLevel}.`);
   }
   if (recommendedUses) {
     boundaryItems.push(`דוגמאות לשימושים מומלצים בקורס: ${recommendedUses}.`);
@@ -1095,54 +1095,54 @@ function buildPolicyHtml(answers) {
   if (recommendedTools) {
     boundaryItems.push(`הכלים המומלצים לשימוש במסגרת הקורס הם: ${recommendedTools}.`);
   }
-  addSection("גבולות הגזרה", boundaryItems);
+  addSection("גבולות הגזרה: מה מותר ואסור לבצע בקורס", boundaryItems);
 
   const responsibilityItems = [];
   if (studentResponsibility) {
     responsibilityItems.push(studentResponsibility);
   }
   if (verificationLevel) {
-    responsibilityItems.push(`רמת בדיקת האמינות המצופה מהסטודנטים היא: ${verificationLevel}.`);
+    responsibilityItems.push(`היקף בדיקת האמינות המצופה מהסטודנטים הוא ${verificationLevel}.`);
   }
   if (privacyWarnings) {
-    responsibilityItems.push(`יש להקפיד על ההנחיות הבאות בנושאי פרטיות ואבטחת מידע: ${privacyWarnings}.`);
+    responsibilityItems.push(`שימו לב, יש להקפיד במיוחד על ההנחיות הבאות בנושאי פרטיות ואבטחת מידע: ${privacyWarnings}.`);
   }
-  addSection("אחריות הסטודנט", responsibilityItems);
+  addSection("אחריות הסטודנט/ית", responsibilityItems);
 
   const transparencyItems = [];
   if (reportingScope) {
-    transparencyItems.push(`כאשר נעשה שימוש ב-AI, הסטודנטים נדרשים לדווח לפחות על הפרטים הבאים: ${reportingScope}.`);
+    transparencyItems.push(`כל שימוש ב־AI במסגרת הקורס מחייב תיעוד. בדיווח יש לכלול לפחות את הפרטים הבאים: ${reportingScope}.`);
   }
   if (hasMeaningfulAnswer(answers.reporting_format)) {
     if (answers.reporting_format === "קישור לתבנית שלכם" && answers.reporting_format_link) {
       transparencyItems.push(
         policyLink
-          ? `קישור לתבנית הדיווח שנבחרה בקורס: <a href="${escapeHtml(policyLink)}" target="_blank" rel="noopener">${escapeHtml(
+          ? `במסגרת הקורס תוכלו לבצע שימוש בתבנית הבאה למטרת דיווח שימוש ב-AI: <a href="${escapeHtml(policyLink)}" target="_blank" rel="noopener">${escapeHtml(
             answers.reporting_format_link
           )}</a>.`
-          : `קישור לתבנית הדיווח שנבחרה בקורס: ${escapeHtml(answers.reporting_format_link)}.`
+          : `במסגרת הקורס תוכלו לבצע שימוש בתבנית הבאה למטרת דיווח שימוש ב-AI: ${escapeHtml(answers.reporting_format_link)}.`
       );
     } else if (answers.reporting_format === "תבנית הצהרת שימוש ב-AI במטלות") {
-      transparencyItems.push('הדיווח יתבצע באמצעות <a href="assets/files/הצהרה על שימוש בכלי בינה מלאכותית במטלות.docx" target="_blank" rel="noopener">תבנית הצהרת שימוש ב-AI במטלות</a>.');
+      transparencyItems.push('במסגרת הקורס תוכלו לבצע שימוש בתבנית הבאה למטרת דיווח שימוש ב-AI: <a href="assets/files/הצהרה על שימוש בכלי בינה מלאכותית במטלות.docx" target="_blank" rel="noopener">תבנית הצהרת שימוש ב-AI</a>.');
     }
   }
   if (reportingTiming) {
-    transparencyItems.push(`הדיווח נדרש במצבים הבאים: ${reportingTiming}.`);
+    transparencyItems.push(`יש להקפיד על הדיווח בעיקר במקרים הבאים:  ${reportingTiming}.`);
   }
   if (citationGuidance) {
-    transparencyItems.push(`לעניין הפניה וציטוט של תוכן שנוצר על ידי AI: ${citationGuidance}.`);
+    transparencyItems.push(`במטלות הכוללות כתיבה אקדמית במסגרת הקורס יש לעמוד בכללי ציטוט בנוגע לתכנים שמקורם ב-AI, צורת הציטוט הנדרשת היא: ${citationGuidance}.`);
   }
   if (masteryChecks) {
-    transparencyItems.push(`בקיאות הסטודנטים בחומר ובעבודה עשויה להיבדק גם באמצעות: ${masteryChecks}.`);
+    transparencyItems.push(`חלק מהערכת הלמידה, ההבנה של החומר ושל תהליך העבודה עשויה להיבדק גם בדרכים הבאות: ${masteryChecks}.`);
   }
-  addSection("שקיפות וחובת דיווח", transparencyItems);
+  addSection("חוות הדיווח במסגרת הקורס הקורס", transparencyItems);
 
   const enforcementItems = [];
   if (boundaryConsequences) {
-    enforcementItems.push(`שימוש ב-AI מחוץ לגבולות המותרים עלול להוביל לאחת או יותר מההשלכות הבאות: ${boundaryConsequences}.`);
+    enforcementItems.push(`עמידה במדיניות השימוש בטכנולוגיה היא חלק מדרישות הקורס. כאשר השימוש ב־AI אינו תואם את הגבולות שנקבעו, עשויות לחול אחת או יותר מההשלכות הבאות: ${boundaryConsequences}.`);
   }
   if (reportingConsequences) {
-    enforcementItems.push(`אי-דיווח על שימוש ב-AI עלול להוביל לאחת או יותר מההשלכות הבאות: ${reportingConsequences}.`);
+    enforcementItems.push(`שקיפות לגבי השימוש ב־AI היא חלק מהאתיקה ומהאחריות האקדמית בקורס. דיווח חסר, חלקי או כזה שאינו עומד בדרישות הקורס עשוי להוביל לאחת או יותר מההשלכות הבאות: ${reportingConsequences}.`);
   }
   addSection("אכיפה והשלכות", enforcementItems);
 
@@ -1283,12 +1283,12 @@ function buildStudentSlide(answers, forceRegenerate = false) {
 
   // Card 1: הרציונאל (שמירה מפני פגיעה בלבד)
   if (hasRationale) {
-    let bullets = `<li>מטרת מדיניות השימוש בבינה מלאכותית בקורס היא שמירה על מטרות הקורס ואיכות הלמידה בעידן בו כלי AI נגישים וזמינים לסטודנטים.</li>`;
-    if (risks) bullets += renderSlideBullet("המדיניות שומרת על מיומנויות הליבה הבאות אותן תרכשו בקורס", risks);
+    let bullets = `<li>המדיניות מאפשרת שימוש ב־AI באופן שתומך במטרות הקורס ושומר על למידה משמעותית, עצמאית ואיכותית.</li>`;
+    if (risks) bullets += renderSlideBullet("בקורס חשוב לנו לשמור במיוחד על מיומנויות הליבה הבאות", risks);
 
     cardsHtml += `
       <div class="slide-card">
-        <h4>הרציונאל</h4>
+        <h4>מה עומד מאחורי המדיניות?</h4>
         <ul>${bullets}</ul>
       </div>
     `;
@@ -1298,13 +1298,13 @@ function buildStudentSlide(answers, forceRegenerate = false) {
   if (hasBoundaries) {
     let bullets = "";
     if (boundaryLevel) bullets += `<li>${boundaryLevel}</li>`;
-    if (allowedStages) bullets += renderSlideBullet("מתי אפשר להשתמש בAI", allowedStages);
-    if (recommendedUses) bullets += renderSlideBullet("שימושים מומלצים", recommendedUses);
+    if (allowedStages) bullets += renderSlideBullet("מתי מותר (ואף מומלץ) להשתמש בAI", allowedStages);
+    if (recommendedUses) bullets += renderSlideBullet("דוגמאות לשימושים מומלצים", recommendedUses);
     if (recommendedTools) bullets += renderSlideBullet("כלים מומלצים", recommendedTools);
 
     cardsHtml += `
       <div class="slide-card">
-        <h4>גבולות הגזרה</h4>
+        <h4>גבולות הגזרה: מה מותר ואסור לבצע בקורס</h4>
         <ul>${bullets}</ul>
       </div>
     `;
@@ -1314,8 +1314,8 @@ function buildStudentSlide(answers, forceRegenerate = false) {
   if (hasResponsibility) {
     let bullets = "";
     if (studentResponsibility) bullets += `<li>${studentResponsibility}</li>`;
-    if (verificationLevel) bullets += `<li>אימות מידע: נדרש לבצע ${verificationLevel}</li>`;
-    if (privacyWarnings) bullets += renderSlideBullet("פרטיות ואבטחה", privacyWarnings);
+    if (verificationLevel) bullets += `<li>היקף אימות המידע הנדרש בקורס הוא ${verificationLevel}</li>`;
+    if (privacyWarnings) bullets += renderSlideBullet("פרטיות ואבטחת מידע", privacyWarnings);
 
     cardsHtml += `
       <div class="slide-card">
@@ -1328,13 +1328,13 @@ function buildStudentSlide(answers, forceRegenerate = false) {
   // Card 4: שקיפות וחובת דיווח
   if (hasTransparency) {
     let bullets = "";
-    if (reportingScope) bullets += renderSlideBullet("פרטים לדיווח", reportingScope);
+    if (reportingScope) bullets += renderSlideBullet("פרטים שיש לדווח", reportingScope);
     if (reportingFormat) bullets += `<li>אופן הדיווח: ${reportingFormat}</li>`;
-    if (reportingTiming) bullets += renderSlideBullet("מתי מדווחים", reportingTiming);
+    if (reportingTiming) bullets += renderSlideBullet("יש לבצע דיווח במקרים הבאים", reportingTiming);
 
     cardsHtml += `
       <div class="slide-card">
-        <h4>שקיפות וחובת דיווח</h4>
+        <h4>חוות הדיווח במסגרת הקורס</h4>
         <ul>${bullets}</ul>
       </div>
     `;
@@ -1343,8 +1343,8 @@ function buildStudentSlide(answers, forceRegenerate = false) {
   // Card 5: אכיפה והשלכות (unifying questions 14, 15, 16)
   if (hasEnforcement) {
     let bullets = "";
-    if (formattedMastery) bullets += renderSlideBullet("בדיקת בקיאות", formattedMastery);
-    if (formattedConsequences) bullets += renderSlideBullet("השלכות לשימוש חורג או אי-דיווח", formattedConsequences);
+    if (formattedMastery) bullets += renderSlideBullet("על מנת לוודא בקיאות בנלמד יבוצעו: ", formattedMastery);
+    if (formattedConsequences) bullets += renderSlideBullet("במקרה של חריגה מהמדיניות", formattedConsequences);
 
     cardsHtml += `
       <div class="slide-card">
@@ -1374,8 +1374,8 @@ function buildStudentSlide(answers, forceRegenerate = false) {
     <div id="slide-editable-content" contenteditable="true" spellcheck="false" class="editable-slide-content">
       <div class="slide-header">
         <div class="slide-header-text">
-          <h3 class="display-6">מדיניות AI בקורס</h3>
-          <p class="text-secondary-emphasis fw-bold">הנחיות וכללי שימוש בכלי AI במסגרת הקורס.</p>
+          <h3 class="display-6">השימוש ב־AI בקורס</h3>
+          <p class="text-secondary-emphasis fw-bold">כללים לשימוש אחראי בכלי AI במהלך הקורס</p>
         </div>
         <div class="slide-logo-wrapper" contenteditable="false" title="לוגו הקרייה האקדמית אונו">
           <img src="assets/logo/onoCenterLogo.png?v=1.0.56" alt="לוגו הקרייה האקדמית אונו" class="slide-logo-img" />
@@ -2010,7 +2010,7 @@ function validateCurrentQuestion({ allowSkip = false } = {}) {
     if (question.required && !isQuestionAnswered(question, answer)) {
       firstError = {
         id: question.id,
-        message: "כדי להמשיך יש לענות על השאלה או לבחור בדילוג."
+        message: "כדי להמשיך יש לענות על השאלה או לבחור בכפתור \"דלג על השאלה\"."
       };
       return;
     }
