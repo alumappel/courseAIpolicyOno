@@ -429,6 +429,14 @@ main>section:not(#builder) {
   #guidelines .guidelines-inline-title {
     display: none !important;
   }
+
+  #collapse-guidelines {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    height: auto !important;
+    margin-top: 0 !important;
+  }
 }
 
 /* Mobile & Tablet (< 992px): Keep original static section appearance completely untouched */
@@ -1788,10 +1796,42 @@ footer a:hover {
     grid-template-columns: 1fr;
   }
 
-  .guideline-questions {
-    align-items: flex-start;
-    border-inline-start: 0;
-    border-block-start: var(--border-width) solid var(--border-color);
+  .hero-media-col {
+    display: none !important;
+  }
+
+  #guidelines .guidelines-inline-title {
+    display: flex !important;
+  }
+
+  .studio-mobile-bold {
+    font-weight: 800 !important;
+  }
+
+  #wizard-clear {
+    display: none !important;
+  }
+
+  #builder .btn-primary,
+  #wizard-next {
+    background-color: var(--color-accent) !important;
+    color: #121212 !important;
+    border-color: var(--border-color) !important;
+  }
+
+  #builder .btn-primary:hover,
+  #builder .btn-primary:focus-visible,
+  #builder .btn-primary:active,
+  #wizard-next:hover,
+  #wizard-next:focus-visible,
+  #wizard-next:active {
+    background-color: var(--color-accent) !important;
+    color: #121212 !important;
+  }
+
+  .btn-back-to-top {
+    left: 1.5rem !important;
+    right: auto !important;
   }
 }
 

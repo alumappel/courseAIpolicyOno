@@ -2057,6 +2057,15 @@ function validateCurrentQuestion({ allowSkip = false } = {}) {
   return false;
 }
 
+function scrollToWizardTop() {
+  const target = document.getElementById("wizard-section-header") || document.getElementById("builder");
+  if (!target) return;
+  const navEl = document.getElementById("main-nav");
+  const navHeight = navEl ? navEl.offsetHeight : 80;
+  const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+  window.scrollTo({ top: Math.max(0, targetPosition), behavior: "smooth" });
+}
+
 function goToNextQuestion() {
   if (!validateCurrentQuestion()) {
     return;
@@ -2068,6 +2077,7 @@ function goToNextQuestion() {
   }
 
   showQuestion(state.currentQuestionIndex + 1, { focusQuestion: true });
+  scrollToWizardTop();
 }
 
 function goToPreviousQuestion() {
@@ -2095,6 +2105,7 @@ function skipCurrentQuestion() {
   }
 
   showQuestion(state.currentQuestionIndex + 1, { focusQuestion: true });
+  scrollToWizardTop();
 }
 
 function resetWizard() {
@@ -2473,8 +2484,8 @@ function init() {
     }, { passive: true });
   }
 
-  // Handle results accordion collapse button text & state updates
-  ["collapse-editor", "collapse-slide"].forEach((id) => {
+  // Handle accordion collapse button text & state updates
+  ["collapse-editor", "collapse-slide", "collapse-guidelines"].forEach((id) => {
     const el = document.getElementById(id);
     if (!el) return;
 
@@ -2505,24 +2516,36 @@ function init() {
     });
   });
 
-  // Handle Guidelines links: open Desktop Modal or Smooth Scroll on Mobile/Tablet
+  // Handle Guidelines links: open Desktop Modal or Auto-Expand Accordion & Smooth Scroll on Mobile/Tablet
   const guidelinesModalEl = document.getElementById("guidelinesModal");
+  const guidelinesCollapseEl = document.getElementById("collapse-guidelines");
   const guidelinesLinks = document.querySelectorAll('a[href="#guidelines"]');
 
   guidelinesLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
+      e.preventDefault();
       if (window.matchMedia("(min-width: 992px)").matches) {
-        e.preventDefault();
         if (guidelinesModalEl && window.bootstrap?.Modal) {
           const modalInstance = window.bootstrap.Modal.getOrCreateInstance(guidelinesModalEl);
           modalInstance.show();
         }
       } else {
-        // Mobile / Tablet: Smooth scroll to guidelines section
+        // Mobile / Tablet: Expand accordion automatically and smooth scroll to guidelines section
+        if (guidelinesCollapseEl) {
+          if (window.bootstrap?.Collapse) {
+            const bsCollapse = window.bootstrap.Collapse.getOrCreateInstance(guidelinesCollapseEl);
+            bsCollapse.show();
+          } else {
+            guidelinesCollapseEl.classList.add("show");
+          }
+        }
+
         const targetEl = document.getElementById("guidelines") || guidelinesModalEl;
         if (targetEl) {
-          e.preventDefault();
-          targetEl.scrollIntoView({ behavior: "smooth" });
+          const navEl = document.getElementById("main-nav");
+          const navHeight = navEl ? navEl.offsetHeight : 80;
+          const targetPosition = targetEl.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+          window.scrollTo({ top: Math.max(0, targetPosition), behavior: "smooth" });
         }
       }
     });
