@@ -2504,6 +2504,29 @@ function init() {
       }
     });
   });
+
+  // Handle Guidelines links: open Desktop Modal or Smooth Scroll on Mobile/Tablet
+  const guidelinesModalEl = document.getElementById("guidelinesModal");
+  const guidelinesLinks = document.querySelectorAll('a[href="#guidelines"]');
+
+  guidelinesLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      if (window.matchMedia("(min-width: 992px)").matches) {
+        e.preventDefault();
+        if (guidelinesModalEl && window.bootstrap?.Modal) {
+          const modalInstance = window.bootstrap.Modal.getOrCreateInstance(guidelinesModalEl);
+          modalInstance.show();
+        }
+      } else {
+        // Mobile / Tablet: Smooth scroll to guidelines section
+        const targetEl = document.getElementById("guidelines") || guidelinesModalEl;
+        if (targetEl) {
+          e.preventDefault();
+          targetEl.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    });
+  });
 }
 
 function restoreAccordionStates() {

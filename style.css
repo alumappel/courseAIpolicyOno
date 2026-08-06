@@ -328,6 +328,154 @@ main>section:not(#builder) {
 }
 
 /* ================================
+   Desktop Only: Guidelines Modal & Intro Accent
+   ================================ */
+
+@media (min-width: 992px) {
+  #intro {
+    background-color: var(--color-accent-light);
+    border-bottom: var(--border-width) solid var(--border-color);
+  }
+
+  #guidelinesModal .modal-dialog {
+    max-width: 1100px;
+    width: 92%;
+    max-height: calc(100vh - 3rem);
+    margin: 1.5rem auto;
+  }
+
+  #guidelinesModal .modal-content {
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-flat);
+    background-color: #ffffff;
+    overflow: hidden;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  #guidelinesModal .modal-header {
+    background-color: #ffffff;
+    border-bottom: var(--border-width) solid var(--border-color) !important;
+    padding: 1.25rem 1.75rem 1.25rem 5rem;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  /* Custom Neobrutalist Close Button pinned to left edge */
+  .guidelines-close-btn {
+    position: absolute;
+    top: 1rem;
+    left: 1.25rem;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background-color: #ffffff;
+    border: var(--border-width) solid var(--border-color) !important;
+    box-shadow: 3px 3px 0px #121212;
+    color: #121212;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+    z-index: 10;
+  }
+
+  .guidelines-close-btn:hover,
+  .guidelines-close-btn:focus-visible {
+    background-color: var(--color-accent) !important;
+    color: #121212 !important;
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px #121212;
+    outline: none;
+  }
+
+  .guidelines-close-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0px #121212;
+  }
+
+  #guidelinesModal .modal-body {
+    flex: 1 1 auto;
+    max-height: calc(85vh - 85px);
+    overflow-y: auto !important;
+    padding: 1rem 1.75rem 2rem 1.75rem;
+    background-color: #ffffff !important;
+  }
+
+  #guidelinesModal #guidelines {
+    background-color: #ffffff !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  #guidelinesModal .guideline-row-card {
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    background-color: #ffffff;
+  }
+
+  #guidelinesModal .guideline-number-square {
+    border: none !important;
+    border-inline-end: var(--border-width) solid var(--border-color) !important;
+  }
+
+  #guidelinesModal .guideline-body-content {
+    background-color: var(--color-accent-light) !important;
+  }
+
+  #guidelines .guidelines-inline-title {
+    display: none !important;
+  }
+}
+
+/* Mobile & Tablet (< 992px): Keep original static section appearance completely untouched */
+@media (max-width: 991.98px) {
+  #guidelinesModal.modal {
+    position: static !important;
+    display: block !important;
+    opacity: 1 !important;
+    transform: none !important;
+    z-index: auto !important;
+    background-color: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+  }
+
+  #guidelinesModal .modal-dialog {
+    max-width: 100% !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  #guidelinesModal .modal-content {
+    border: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    border-radius: 0 !important;
+  }
+
+  #guidelinesModal .modal-header {
+    display: none !important;
+  }
+
+  #guidelinesModal .modal-body {
+    max-height: none !important;
+    overflow-y: visible !important;
+    padding: 0 !important;
+  }
+
+  .modal-backdrop {
+    display: none !important;
+  }
+}
+
+
+
+/* ================================
    Navbar Redesign
    ================================ */
 .logo-img {
@@ -656,8 +804,9 @@ main>section:not(#builder) {
   min-width: 4rem;
   background-color: var(--color-accent);
   color: #121212;
-  border: var(--border-width) solid var(--border-color);
-  /* Border on all sides */
+  border: none;
+  border-inline-end: var(--border-width) solid var(--border-color);
+  /* Divider line between number badge and content */
   font-weight: 900;
   font-size: 1.75rem;
   flex-shrink: 0;
