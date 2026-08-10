@@ -1456,8 +1456,9 @@ main>section:not(#builder) {
   color: var(--color-text);
 }
 
+.policy-output a,
 .policy-output .ql-editor a {
-  color: #121212;
+  color: #0b57d0;
   text-decoration: underline;
 }
 
@@ -1915,6 +1916,13 @@ footer a:hover {
   #policy-print-container li {
     font-size: 11pt;
     margin-bottom: 0.25rem;
+  }
+
+  #policy-print-container a {
+    color: #0b57d0 !important;
+    text-decoration: underline !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
   /* Slide specific printing */

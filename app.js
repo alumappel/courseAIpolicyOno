@@ -226,7 +226,7 @@ const formConfig = [
           {
             value: "תבנית בסיס: הצהרת שימוש ב-AI במטלות",
             titleHtml:
-              '<a href="assets/files/הצהרה על שימוש בכלי בינה מלאכותית במטלות.docx" target="_blank" rel="noopener">תבנית בסיס: יש להעלות קובץ עדכני של אונו</a>'
+              '<a href="assets/files/הצהרה על שימוש בכלי בינה מלאכותית במטלות.docx" target="_blank" rel="noopener">תבנית בסיס: בצהרת שימוש ב-AI במטלות</a>'
           },
           {
             value: "קישור לתבנית שלכם",
@@ -927,10 +927,12 @@ function buildPolicyText(answers) {
   const boundaryConsequences = formatList(answers.boundary_consequences);
   const reportingConsequences = formatList(answers.reporting_consequences);
 
-  const reportingFormat =
-    answers.reporting_format === "קישור לתבנית שלכם" && answers.reporting_format_link
-      ? `קישור לתבנית הדיווח שנבחרה בקורס: ${answers.reporting_format_link}.`
-      : "הדיווח יתבצע באמצעות תבנית הצהרת שימוש ב-AI במטלות.";
+  let reportingFormat = "הדיווח יתבצע באמצעות תבנית הצהרת שימוש ב-AI במטלות.";
+  if (answers.reporting_format === "קישור לתבנית שלכם" && answers.reporting_format_link) {
+    reportingFormat = `קישור לתבנית הדיווח שנבחרה בקורס: ${answers.reporting_format_link}.`;
+  } else if (answers.reporting_format === "תבנית בסיס: הצהרת שימוש ב-AI במטלות" || answers.reporting_format === "תבנית הצהרת שימוש ב-AI במטלות") {
+    reportingFormat = `הדיווח יתבצע באמצעות תבנית הצהרת שימוש ב-AI במטלות (ניתן להוריד מקישור: assets/files/הצהרה על שימוש בכלי בינה מלאכותית במטלות.docx).`;
+  }
 
   const citationText = answers.citation_guidance
     ? `לעניין הפניה וציטוט של תוכן שנוצר על ידי AI: ${answers.citation_guidance}`
@@ -1129,12 +1131,10 @@ function buildPolicyHtml(answers) {
     if (answers.reporting_format === "קישור לתבנית שלכם" && answers.reporting_format_link) {
       transparencyItems.push(
         policyLink
-          ? `במסגרת הקורס תוכלו לבצע שימוש בתבנית הבאה למטרת דיווח שימוש ב-AI: <a href="${escapeHtml(policyLink)}" target="_blank" rel="noopener">${escapeHtml(
-            answers.reporting_format_link
-          )}</a>.`
-          : `במסגרת הקורס תוכלו לבצע שימוש בתבנית הבאה למטרת דיווח שימוש ב-AI: ${escapeHtml(answers.reporting_format_link)}.`
+          ? `במסגרת הקורס תוכלו לבצע שימוש בתבנית הבאה למטרת דיווח שימוש ב-AI: <a href="${escapeHtml(policyLink)}" target="_blank" rel="noopener">תבנית להצהרת שימוש ב-AI</a>.`
+          : `במסגרת הקורס תוכלו לבצע שימוש בתבנית הבאה למטרת דיווח שימוש ב-AI: תבנית להצהרת שימוש ב-AI (${escapeHtml(answers.reporting_format_link)}).`
       );
-    } else if (answers.reporting_format === "תבנית הצהרת שימוש ב-AI במטלות") {
+    } else if (answers.reporting_format === "תבנית בסיס: הצהרת שימוש ב-AI במטלות" || answers.reporting_format === "תבנית הצהרת שימוש ב-AI במטלות") {
       transparencyItems.push('במסגרת הקורס תוכלו לבצע שימוש בתבנית הבאה למטרת דיווח שימוש ב-AI: <a href="assets/files/הצהרה על שימוש בכלי בינה מלאכותית במטלות.docx" target="_blank" rel="noopener">תבנית הצהרת שימוש ב-AI</a>.');
     }
   }
@@ -1244,7 +1244,7 @@ function buildStudentSlide(answers, forceRegenerate = false) {
   if (answers.reporting_format === "קישור לתבנית שלכם" && answers.reporting_format_link) {
     const cleanUrl = sanitizeUrl(answers.reporting_format_link) || escapeHtml(answers.reporting_format_link);
     reportingFormat = `באמצעות <a href="${cleanUrl}" target="_blank" rel="noopener">קישור לתבנית הדיווח</a>`;
-  } else if (answers.reporting_format === "תבנית הצהרת שימוש ב-AI במטלות") {
+  } else if (answers.reporting_format === "תבנית בסיס: הצהרת שימוש ב-AI במטלות" || answers.reporting_format === "תבנית הצהרת שימוש ב-AI במטלות") {
     reportingFormat = `באמצעות <a href="assets/files/הצהרה על שימוש בכלי בינה מלאכותית במטלות.docx" target="_blank" rel="noopener">תבנית הצהרת שימוש ב-AI במטלות</a>`;
   }
   const reportingTiming = formatSlideList(answers.reporting_timing);
