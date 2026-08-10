@@ -790,6 +790,11 @@ main>section:not(#builder) {
   box-shadow: var(--shadow-flat-hover);
 }
 
+.card.no-hover:hover {
+  transform: none !important;
+  box-shadow: var(--shadow-flat) !important;
+}
+
 .guideline-row-card {
   position: relative;
   background-color: rgba(255, 255, 255, 0.85);
