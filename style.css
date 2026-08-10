@@ -1462,6 +1462,15 @@ main>section:not(#builder) {
   text-decoration: underline;
 }
 
+.policy-output img.policy-logo,
+.policy-output .ql-editor img.policy-logo {
+  max-height: 100px !important;
+  height: 100px !important;
+  width: auto !important;
+  display: block !important;
+  margin: 0 auto 1.5rem auto !important;
+}
+
 .policy-output .ql-editor.ql-blank::before {
   color: var(--color-muted);
   font-style: normal;
@@ -1923,6 +1932,18 @@ footer a:hover {
     text-decoration: underline !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+  }
+
+  #policy-print-container .ql-align-center {
+    text-align: center !important;
+  }
+
+  #policy-print-container img.policy-logo {
+    max-height: 100px !important;
+    height: 100px !important;
+    width: auto !important;
+    display: inline-block !important;
+    margin: 0 auto 1.5rem auto !important;
   }
 
   /* Slide specific printing */

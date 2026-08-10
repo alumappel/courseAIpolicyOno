@@ -1052,6 +1052,15 @@ function sanitizeUrl(value) {
 }
 
 function buildPolicyHtml(answers) {
+  const getAbsoluteUrl = (relativePath) => {
+    try {
+      return new URL(relativePath, window.location.href).href;
+    } catch (e) {
+      return relativePath;
+    }
+  };
+  const logoUrl = getAbsoluteUrl("assets/logo/OnoOrgLogo.png?v=1.0.74");
+
   const goals = getAnswerText(answers.course_goals);
   const aiSkills = getAnswerText(answers.ai_skills);
   const risks = getAnswerText(answers.skills_at_risk);
@@ -1070,7 +1079,10 @@ function buildPolicyHtml(answers) {
   const policyLink = sanitizeUrl(answers.reporting_format_link);
   const citationGuidance = getAnswerText(answers.citation_guidance);
   const equityBlock = [answers.equity_paid_tools, answers.equity_support].filter((value) => hasMeaningfulAnswer(value));
-  const sections = ['<h2>מדיניות שימוש ב-AI בקורס ________</h2>'];
+  const sections = [
+    `<p class="ql-align-center" style="text-align: center; margin-bottom: 1.5rem;" align="center"><img class="policy-logo" src="${logoUrl}" alt="לוגו הקרייה האקדמית אונו" height="100" style="display: block; margin: 0 auto; max-height: 100px;" /></p>`,
+    '<h2>מדיניות שימוש ב-AI בקורס ________</h2>'
+  ];
 
   const addSection = (title, items) => {
     if (!items.length) {
@@ -1390,7 +1402,7 @@ function buildStudentSlide(answers, forceRegenerate = false) {
           <p class="text-secondary-emphasis fw-bold">כללים לשימוש אחראי בכלי AI במהלך הקורס</p>
         </div>
         <div class="slide-logo-wrapper" contenteditable="false" title="לוגו הקרייה האקדמית אונו">
-          <img src="assets/logo/onoCenterLogo.png?v=1.0.56" alt="לוגו הקרייה האקדמית אונו" class="slide-logo-img" />
+          <img src="assets/logo/OnoOrgLogo.png?v=1.0.74" alt="לוגו הקרייה האקדמית אונו" class="slide-logo-img" />
         </div>
       </div>
       <div class="slide-grid ${gridClass}">
@@ -1611,6 +1623,19 @@ function cleanHtmlForClipboard(html) {
     if (qlUi) {
       qlUi.remove();
     }
+  });
+
+  // Ensure elements with ql-align-center are centered when pasted in external apps
+  tempDiv.querySelectorAll(".ql-align-center").forEach((el) => {
+    el.style.textAlign = "center";
+    el.setAttribute("align", "center");
+  });
+
+  // Centering logo block for copy-paste
+  tempDiv.querySelectorAll("img.policy-logo").forEach((img) => {
+    img.style.display = "block";
+    img.style.marginLeft = "auto";
+    img.style.marginRight = "auto";
   });
 
   return tempDiv.innerHTML;
