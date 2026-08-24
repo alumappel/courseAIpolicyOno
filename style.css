@@ -1162,6 +1162,43 @@ main>section:not(#builder) {
   margin-inline-start: 0.35rem;
 }
 
+/* Dedicated Action / Download Button in Choice Cards */
+.choice-action-wrap {
+  margin-block-start: 0.6rem;
+  padding-inline-start: 2rem;
+}
+
+.choice-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #121212;
+  background-color: #ffffff;
+  border: 2px solid var(--border-color, #121212);
+  border-radius: var(--radius-sm, 6px);
+  text-decoration: none;
+  box-shadow: 2px 2px 0px #121212;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.15s ease;
+  cursor: pointer;
+}
+
+.choice-download-btn:hover,
+.choice-download-btn:focus-visible {
+  background-color: var(--color-accent, #ffc107);
+  color: #121212;
+  text-decoration: none;
+  box-shadow: 3px 3px 0px #121212;
+  transform: translate(-1px, -1px);
+}
+
+.choice-download-btn:focus-visible {
+  outline: 3px solid #121212;
+  outline-offset: 2px;
+}
+
 /* Text Inputs and Textareas in Neobrutalist design */
 .form-control {
   border: var(--border-width) solid var(--border-color) !important;

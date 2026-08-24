@@ -225,8 +225,13 @@ const formConfig = [
         options: [
           {
             value: "תבנית בסיס: הצהרת שימוש ב-AI במטלות",
-            titleHtml:
-              '<a href="assets/files/הצהרה על שימוש בכלי בינה מלאכותית במטלות.docx" target="_blank" rel="noopener">תבנית בסיס: בצהרת שימוש ב-AI במטלות</a>'
+            title: "תבנית בסיס: הצהרת שימוש ב-AI במטלות",
+            actionButton: {
+              text: "הורדת תבנית הבסיס",
+              href: "assets/files/הצהרה על שימוש בכלי בינה מלאכותית במטלות.docx",
+              download: true,
+              ariaLabel: "הורדת תבנית הבסיס: הצהרה על שימוש בכלי בינה מלאכותית במטלות"
+            }
           },
           {
             value: "קישור לתבנית שלכם",
@@ -497,7 +502,8 @@ function normalizeOption(option) {
       titleHtml: "",
       description: "",
       descriptionHtml: "",
-      conditionalInput: null
+      conditionalInput: null,
+      actionButton: null
     };
   }
 
@@ -507,7 +513,8 @@ function normalizeOption(option) {
     titleHtml: option.titleHtml || "",
     description: option.description || "",
     descriptionHtml: option.descriptionHtml || "",
-    conditionalInput: option.conditionalInput || null
+    conditionalInput: option.conditionalInput || null,
+    actionButton: option.actionButton || null
   };
 }
 
@@ -566,6 +573,35 @@ function renderChoiceQuestion(question) {
         answerId: optionData.conditionalInput.id,
         required: Boolean(optionData.conditionalInput.required)
       });
+    }
+
+    if (optionData.actionButton) {
+      card.classList.add("flex-wrap");
+      const actionWrap = document.createElement("div");
+      actionWrap.className = "choice-action-wrap w-100";
+      const actionBtn = document.createElement("a");
+      actionBtn.className = "choice-download-btn";
+      actionBtn.href = optionData.actionButton.href;
+      if (optionData.actionButton.download) {
+        actionBtn.setAttribute("download", "");
+      }
+      actionBtn.target = "_blank";
+      actionBtn.rel = "noopener";
+      actionBtn.setAttribute("aria-label", optionData.actionButton.ariaLabel || optionData.actionButton.text);
+      actionBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+          <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+        </svg>
+        <span>${optionData.actionButton.text}</span>
+      `;
+
+      actionBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+      });
+
+      actionWrap.appendChild(actionBtn);
+      card.appendChild(actionWrap);
     }
 
     makeChoiceCardInteractive(card, input);
@@ -952,7 +988,7 @@ function buildPolicyText(answers) {
 ${answers.student_responsibility}
 רמת בדיקת האמינות המצופה מהסטודנטים היא: ${answers.verification_level}. בנוסף, יש להקפיד על ההנחיות הבאות בנושאי פרטיות ואבטחת מידע: ${privacyWarnings}.
 
-חוות הדיווח במסגרת הקורס הקורס
+חובת הדיווח במסגרת הקורס
 כאשר נעשה שימוש ב-AI, הסטודנטים נדרשים לדווח לפחות על הפרטים הבאים: ${reportingScope}. ${reportingFormat} הדיווח נדרש במצבים הבאים: ${reportingTiming}. ${citationText} בקיאות הסטודנטים בחומר ובעבודה עשויה להיבדק גם באמצעות: ${masteryChecks}.
 
 אכיפה והשלכות
@@ -1159,7 +1195,7 @@ function buildPolicyHtml(answers) {
   if (masteryChecks) {
     transparencyItems.push(`חלק מהערכת הלמידה, ההבנה של החומר ושל תהליך העבודה עשויה להיבדק גם בדרכים הבאות: ${masteryChecks}.`);
   }
-  addSection("חוות הדיווח במסגרת הקורס הקורס", transparencyItems);
+  addSection("חובת הדיווח במסגרת הקורס", transparencyItems);
 
   const enforcementItems = [];
   if (boundaryConsequences) {
@@ -1358,7 +1394,7 @@ function buildStudentSlide(answers, forceRegenerate = false) {
 
     cardsHtml += `
       <div class="slide-card">
-        <h4>חוות הדיווח במסגרת הקורס</h4>
+        <h4>חובת הדיווח במסגרת הקורס</h4>
         <ul>${bullets}</ul>
       </div>
     `;
