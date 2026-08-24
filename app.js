@@ -1,7 +1,7 @@
 const formConfig = [
   {
     sectionId: "rationale",
-    sectionTitle: "1. לחזק את הלמהש מדיניות AI לקורס",
+    sectionTitle: "1. לחזק את ה-למה",
     intro:
       "כאן מבהירים מה המדיניות נועדה לשרת, ואיך היא תומכת במטרות הלמידה של הקורס.",
     questions: [
@@ -67,7 +67,7 @@ const formConfig = [
   },
   {
     sectionId: "boundaries",
-    sectionTitle: "2. לשרטט את גבולות הגזרהע בקורס: מה מותר ואסור לבצע בקורס – מה מותר ומה אסור",
+    sectionTitle: "2. לשרטט את גבולות הגזרה בקורס",
     intro:
       "זה הזמן להגדיר בבירור מה מותר, מה מוגבל ומה מחוץ לתחום, כדי לצמצם אי-ודאות ולחזק אמון. שימו לב להגדיר גבולות שתוכלו לנטר ולאכוף.",
     questions: [
@@ -151,13 +151,13 @@ const formConfig = [
   },
   {
     sectionId: "responsibility",
-    sectionTitle: "3. להבהיר מי האחראי/ית/ית",
+    sectionTitle: "3. להבהיר מי האחראי/ית",
     intro:
       "היו ברורים וישירים, השימוש ב-AI אינו מחליף אחריות אישית, אקדמית ואתית על התוצר המוגש.",
     questions: [
       {
         id: "student_responsibility",
-        label: "מי אחראי על התוצרים אשר נוצרו בAI במסגרת הקורס?כם?",
+        label: "מי אחראי על התוצרים אשר נוצרו בAI במסגרת הקורס?",
         type: "radio",
         required: true,
         options: [
@@ -196,7 +196,7 @@ const formConfig = [
   },
   {
     sectionId: "transparency",
-    sectionTitle: "4. להסדיר את פורמט הדיווח הקורס הקורס",
+    sectionTitle: "4. להסדיר את פורמט הדיווח בקורס",
     intro:
       "הגדירו איך מדווחים על שימוש ב-AI, כדי לחזק שקיפות, אחריות ובהירות. סעיף זה משקף את דרישותיכם ברמה הטכנית ונועד כדי לייצר פורמט אחיד וברור עבור הסטודנטים.",
     questions: [
